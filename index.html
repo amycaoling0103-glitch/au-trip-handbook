@@ -696,11 +696,12 @@ function renderOverview(){
   const rough = '<filter id="rgh"><feTurbulence type="fractalNoise" baseFrequency="0.022" numOctaves="3" seed="9" result="n"/>' +
                 '<feDisplacementMap in="SourceGraphic" in2="n" scale="4.5" xChannelSelector="R" yChannelSelector="G"/></filter>';
   const ds = '<filter id="ds" x="-40%" y="-40%" width="180%" height="180%"><feDropShadow dx="0" dy="2" stdDeviation="2.2" flood-opacity=".22"/></filter>';
-  // 简化国家轮廓（按真实经纬度近似）
-  const au = 'M176 400 Q170 350 200 320 L280 285 L379 275 L460 270 L503 280 L547 298 L600 320 L627 352 L607 390 L536 408 L457 395 L380 400 L270 405 L210 395 Z';
-  const tz = 'M540 420 L580 425 L560 445 L530 440 Z';
-  const vn = 'M88 105 Q75 130 85 155 L100 175 L78 180 Q65 140 88 105 Z';
-  const cn = 'M130 30 Q130 25 135 25 L320 28 Q330 30 330 40 L332 100 Q330 130 310 138 L195 135 Q175 130 158 115 Q140 100 130 80 Z';
+  // 真实国家轮廓（真实海岸线经纬度 → 投影坐标，约 90+ 锚点）
+  const au = 'M475 258 L487 268 L493 279 L512 287 L517 292 L522 298 L530 305 L555 311 L560 315 L580 323 L580 328 L595 334 L608 338 L609 346 L613 351 L615 357 L613 359 L610 364 L608 369 L606 372 L601 377 L593 381 L585 386 L581 389 L579 393 L572 397 L570 403 L567 406 L542 409 L525 414 L514 410 L511 411 L506 412 L503 410 L497 411 L493 412 L489 413 L487 414 L482 412 L481 412 L475 411 L464 411 L454 408 L444 406 L443 402 L436 397 L429 395 L425 393 L425 392 L417 389 L412 387 L417 382 L414 381 L363 378 L368 382 L349 381 L318 377 L293 375 L268 374 L242 376 L217 377 L211 380 L193 383 L167 386 L154 389 L148 392 L131 384 L137 383 L138 378 L138 376 L136 370 L129 362 L119 352 L109 343 L113 336 L114 326 L118 322 L128 317 L152 312 L175 311 L186 309 L214 303 L220 298 L220 294 L224 290 L229 284 L255 279 L268 276 L274 275 L280 273 L287 270 L299 268 L312 267 L324 268 L328 267 L333 265 L350 267 L356 269 L369 270 L387 273 L391 276 L387 280 L387 284 L400 290 L413 295 L432 296 L444 293 L455 287 L464 279 L467 273 L468 268 L472 262 Z';
+  const tz = 'M503 424 L519 425 L532 431 L536 436 L532 439 L526 440 L518 438 L513 435 L509 432 L507 428 L504 425 Z';
+  const vn = 'M116 122 L100 125 L101 127 L98 129 L94 130 L91 131 L89 136 L98 140 L105 145 L111 148 L119 150 L121 151 L126 155 L132 162 L131 167 L131 171 L117 177 L105 179 L102 181 L78 189 L81 182 L74 179 L91 176 L96 172 L104 169 L110 164 L111 159 L106 155 L104 150 L102 147 L89 142 L82 138 L74 132 L67 127 L60 122 L57 117 L74 115 L86 113 L100 114 L114 118 Z';
+  const cn = 'M19 26 L283 26 L235 31 L250 39 L281 39 L295 38 L293 41 L266 46 L254 52 L261 54 L272 62 L274 67 L280 71 L285 75 L282 78 L282 86 L276 88 L257 98 L248 104 L239 106 L227 112 L207 115 L190 116 L184 118 L165 119 L143 121 L145 124 L143 127 L116 122 L100 117 L83 115 L67 114 L55 116 L43 117 L31 120 L21 122 Z' +
+             ' M144 129 L153 131 L146 136 L127 134 Z';  // 海南岛
   const curve = (a,b,cx,cy,c,w,dash) => '<path d="M'+a.x+' '+a.y+' Q '+cx+' '+cy+' '+b.x+' '+b.y+'" fill="none" stroke="'+c+
     '" stroke-width="'+(w||3.4)+'" stroke-linecap="round"'+(dash?' stroke-dasharray="'+dash+'"':'')+'/>';
   const dot = (p,c,r) => '<circle cx="'+p.x+'" cy="'+p.y+'" r="'+(r||6)+'" fill="'+c+'" stroke="#fff" stroke-width="2"/>';
@@ -719,11 +720,11 @@ function renderOverview(){
       '<path d="'+vn+'" fill="var(--map-vn)" stroke="var(--mapstroke)" stroke-width="1.4"/>' +
       '<path d="'+cn+'" fill="var(--map-cn)" stroke="var(--mapstroke)" stroke-width="1.4" opacity=".85"/>' +
     '</g>' +
-    // 国家名水印（放大 + 低透明度，随主题取色）
+    // 国家名水印（放大 + 低透明度，随主题取色；放在各国版图内）
     '<g font-weight="800" letter-spacing="2" fill="currentColor">' +
-      '<text x="380" y="350" text-anchor="middle" font-size="24" opacity=".30">澳大利亚</text>' +
-      '<text x="270" y="95" text-anchor="middle" font-size="20" opacity=".28">中国</text>' +
-      '<text x="72" y="185" text-anchor="middle" font-size="15" opacity=".36">越南</text>' +
+      '<text x="355" y="335" text-anchor="middle" font-size="26" opacity=".30">澳大利亚</text>' +
+      '<text x="150" y="62" text-anchor="middle" font-size="20" opacity=".28">中国</text>' +
+      '<text x="66" y="158" text-anchor="middle" font-size="13" opacity=".36">越南</text>' +
     '</g>' +
     // 国际段（虚线·贝塞尔曲线，按天配色）
     '<g opacity=".85">' +
@@ -746,10 +747,10 @@ function renderOverview(){
     lab(nodes.cns,'凯恩斯','start',287) + lab(nodes.syd,'悉尼','start',385) + lab(nodes.mel,'墨尔本','end',425) +
     // 住几晚徽章（大圆 + 大数字 + 白描边 + 投影）
     '<g filter="url(#ds)">' +
-      badge(40,105,1,'#e0a020') +   // 河内 1 晚
-      badge(513,438,4,'#198754') +  // 墨尔本 1+3 = 4 晚
-      badge(585,418,2,'#e8734a') +  // 悉尼 2 晚
-      badge(555,276,3,'#0077b6') +  // 凯恩斯 3 晚
+      badge(45,155,1,'#e0a020') +   // 河内 1 晚（越南西南海域，避开中越边界线）
+      badge(478,435,4,'#198754') +  // 墨尔本 4 晚（巴斯海峡，避开塔斯马尼亚）
+      badge(585,418,2,'#e8734a') +  // 悉尼 2 晚（悉尼东南近海）
+      badge(555,276,3,'#0077b6') +  // 凯恩斯 3 晚（珊瑚海）
     '</g>' +
     // 图例（曲线示意）
     '<g transform="translate(20,455)" font-size="11" fill="currentColor" opacity=".75">' +
