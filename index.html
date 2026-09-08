@@ -6,7 +6,7 @@
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#fbf4ea" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#14181d" media="(prefers-color-scheme: dark)">
-<title>澳洲 · 越南 自由行手册｜2026.09.25 – 10.06</title>
+<title>2小只勇闯袋鼠国通关秘籍~｜2026.09.25 – 10.06</title>
 <style>
 :root{
   --bg:#f6f1e8; --paper:#fffdf8; --ink:#232a30; --sub:#6b7078; --line:#ddd3c2;
@@ -51,6 +51,10 @@ a{color:inherit}
 .hero h1{font-size:21px;letter-spacing:.5px}
 .hero .dates{color:var(--sub);font-size:13px;margin-top:3px}
 .hero .route{font-size:12px;color:var(--sub);margin-top:6px;line-height:1.5}
+.hero h1 .girl{display:inline-block;font-size:1.45em;margin:0 2px;line-height:1;transform-origin:50% 80%;animation:wag 2.4s ease-in-out infinite}
+.hero h1 .girl:nth-child(2){animation-delay:.6s}
+@keyframes wag{0%,100%{transform:translateY(0) rotate(-6deg)}50%{transform:translateY(-4px) rotate(8deg)}}
+@media (prefers-reduced-motion: reduce){.hero h1 .girl{animation:none}}
 .themeBtn{position:absolute;right:0;top:0;background:var(--paper);border:1px solid var(--line);
   color:var(--sub);font-size:11px;padding:5px 9px;border-radius:999px;cursor:pointer}
 /* ---------- now card ---------- */
@@ -179,7 +183,7 @@ ul.todo li.hot .dot{color:var(--danger)}
 
 <header class="hero">
   <button class="themeBtn" id="themeBtn" type="button">◐ 配色</button>
-  <h1>澳洲 · 越南 自由行手册</h1>
+  <h1><span class="girl">👧</span><span class="girl">👧</span> 2小只勇闯袋鼠国通关秘籍~</h1>
   <div class="dates">2026.09.25（周五） – 10.06（周二） · 2 人 · 共 12 天 11 晚</div>
   <div class="route">上海 → 河内 → 墨尔本 → 悉尼 → 凯恩斯 → 墨尔本 → 广州 → 上海</div>
 </header>
@@ -444,12 +448,13 @@ const DAYS = [
 const TODO = [
   {t:'购买旅游保险：医疗 ≥ 30 万人民币 + 紧急救援送返，并明确承保休闲浮潜 / 深潜', hot:true},
   {t:'越南 e-visa ✅ 已办 —— 打印件随身（浦东值机 + 河内入境都要看）', hot:true},
-  {t:'✅ 全部航班已购托运额度（其中两段国内段为 20kg）—— 在线值机时核对额度已挂在订单上；20kg 那两段装箱注意别超重', hot:true},
+  {t:'✅ 全部 7 段航班已购托运额度 —— 仅 <b>JQ504 墨尔本→悉尼 一段 20kg</b>，其余 6 段全 23kg（VN533/VN779/QF1878/VA1298/CZ344/CZ3533）。装箱按 <b>20kg / 人</b> 卡死（最严的那段是瓶颈），JQ504 在线值机时核对额度挂在订单上', hot:true},
   {t:'致电 Mantra Melbourne Airport（+61 3 9093 6500）告知 9/26 约 23:30 才到店：确认前台有人 + 班车怎么坐（前台非 24 小时，登记截止次日 00:00）', hot:true},
   {t:'在线值机 JQ504（9/27）/ QF1878（9/29）/ VA1298（10/2）三段澳洲国内航班', hot:true},
   {t:'兑换约 400 澳元现金（小面额 5/10/20/50 为主）+ 备好司机小费零钱（拼团 5 澳元/人现金）', hot:true},
   {t:'换少量越南盾（9/25 河内一晚用：河粉 / 洗头 / 打车）'},
   {t:'买/激活当地电话卡：越南 eSIM（9/25 落地激活）+ 澳洲 SIM（落地墨尔本机场 buy，沃达丰 / Telstra prepaid 4G 12 天约 AUD 30–50）', hot:true},
+  {t:'9/29 当天 18:20 飞凯恩斯 —— 提前和悉尼喜来登前台确认退房时间（标准 11:00 还是可延后寄存行李）'},
   {t:'信用卡开通境外交易、告知银行行程日期，避免锁卡'},
   {t:'买 myki 卡（墨尔本公交 / 电车 / 免费 CBD 电车区都要用）'},
   {t:'10/2 凌晨 00:30 抵墨尔本 → 提前确认去 Element Richmond 的交通（打车 / SkyBus）'},
@@ -490,6 +495,11 @@ const TIPS = [
     '澳洲报警 / 急救 / 消防统一 000。',
     '手机存好保单 24h 救援热线与中国驻悉尼 / 墨尔本总领馆电话。',
     '澳洲看病不享受 Medicare：急诊 AUD 519 起、住院一晚 AUD 3,118 起，务必先买保险。'
+  ]},
+  {h:'2 人不同出发点', p:[
+    '本页行程以<b>上海出发</b>为主人线：去程 VN533（浦东 15:50→内排 18:25）、回程 CZ344+CZ3533（墨尔本→广州→虹桥）。',
+    '同行人若从<b>北京</b>走：去程 <b>VN513 首都 T2 15:45→内排 T2 18:40</b>（9/25 河内落地会合）；回程 <b>CZ3101 白云 T2 08:00→大兴 11:05</b>（10/6 广州分别回）。',
+    '行李额度：仅 JQ504（墨尔本→悉尼）<b>20kg</b>，其余 6 段全 <b>23kg</b>；装箱按 20kg / 人卡死（最严瓶颈）。'
   ]},
   {h:'天气与备选方案', p:[
     '大堡礁因风大取消很常见 → 改期优先，或改市区平替（Cairns Aquarium、凯恩斯夜市）。',
