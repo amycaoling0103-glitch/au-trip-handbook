@@ -146,8 +146,15 @@ ul.todo li.hot .dot{color:var(--danger)}
 .tip h3{font-size:13px;margin-bottom:5px}
 .tip p{font-size:12.5px;color:var(--sub)}
 .tip p+p{margin-top:4px}
+.outfits{display:grid;gap:10px;grid-template-columns:1fr}
+.outfit{background:var(--paper);border:1px solid var(--line);border-radius:13px;padding:11px 13px;box-shadow:var(--shadow)}
+.outfit h3{font-size:13.5px;margin-bottom:7px}
+.outfit ul{list-style:none;display:grid;gap:5px}
+.outfit li{display:flex;gap:8px;font-size:12.8px;align-items:flex-start}
+.outfit li .ic{font-size:16px;line-height:1.2;flex:0 0 22px;text-align:center}
+.outfit li .tp{flex:1;color:var(--ink)}
 .foot{text-align:center;font-size:11px;color:var(--sub);margin-top:22px;line-height:1.7}
-@media (min-width:600px){ .tips{grid-template-columns:1fr 1fr} }
+@media (min-width:600px){ .tips{grid-template-columns:1fr 1fr} .outfits{grid-template-columns:1fr 1fr} }
 @media (max-width:400px){ .it .tm{flex:0 0 50px;font-size:11.5px} .cd .n{font-size:21px} }
 </style>
 </head>
@@ -200,6 +207,11 @@ ul.todo li.hot .dot{color:var(--danger)}
   <div class="tips" id="tipBox"></div>
 </section>
 
+<section id="outfitSec">
+  <h2>穿搭建议 · 按天气 / 景色 / 活动</h2>
+  <div class="outfits" id="outfitBox"></div>
+</section>
+
 <div class="foot" id="foot"></div>
 </div>
 
@@ -228,46 +240,46 @@ const FLIGHTS = [
   {no:'CZ344', air:'南方航空', leg:'墨尔本 → 广州',
    from:'墨尔本 MEL T2', to:'广州白云 T2', depISO:'2026-10-05T22:10:00+11:00', arrISO:'2026-10-06T05:00:00+08:00', depTz:'UTC+11（夏令时 AEDT）', arrTz:'UTC+8', note:''},
   {no:'CZ3533', air:'南方航空', leg:'广州 → 上海',
-   from:'广州白云 T2', to:'上海虹桥 T2', depISO:'2026-10-06T07:00:00+08:00', arrISO:'2026-10-06T09:20:00+08:00', depTz:'UTC+8', arrTz:'UTC+8', note:'⚠ 广州国际转国内仅 2 小时'}
+   from:'广州白云 T2', to:'上海虹桥 T2', depISO:'2026-10-06T07:00:00+08:00', arrISO:'2026-10-06T09:20:00+08:00', depTz:'UTC+8', arrTz:'UTC+8', note:'✅ 行李已确认直挂；仅 2 小时中转仍偏紧，05:30 入境走快速通道'}
 ];
 
 /* ---- 住宿（每晚住哪）---- */
 const HOTELS = [
-  {city:'河内', nights:'9/25（1 晚）', name:'内排机场附近酒店', addr:'待补（建议机场周边 5–10 分钟车程）', tel:'待补', status:'待确认'},
-  {city:'墨尔本', nights:'9/26（1 晚）', name:'机场附近或市区酒店', addr:'待补', tel:'待补', status:'待确认'},
-  {city:'悉尼', nights:'9/27–9/29（2 晚）', name:'悉尼海德公园喜来登大酒店 Sheraton Grand Sydney Hyde Park', addr:'悉尼 CBD（Elizabeth St 一带）', tel:'待补', status:'已订'},
-  {city:'凯恩斯', nights:'9/29–10/2（3 晚）', name:'克里斯托布鲁克·贝利酒店 Crystalbrook Bailey', addr:'凯恩斯市中心 CBD', tel:'待补', status:'已订'},
-  {city:'墨尔本', nights:'10/2–10/5（3 晚）', name:'墨尔本里士满源宿酒店 Element Melbourne Richmond', addr:'22 Russell St, Richmond VIC 3121', tel:'待补', status:'已订'}
+  {city:'河内', nights:'9/25（1 晚）', name:'Blue Sky Noi Bai Hotel and Pool', addr:'17 Ngo Dinh 2, Thon Dien Xa, Xa Noi Bai, Ha Noi, Vietnam 10000', tel:'+84 987 669 992', status:'已订（Agoda）', note:'Deluxe Double - AC · 含泳池 + 单程机场接送 + WiFi'},
+  {city:'墨尔本', nights:'9/26（1 晚）', name:'Mantra Melbourne Airport 曼特拉墨尔本机场酒店', addr:'2 Trade Park Drive, Tullamarine VIC 3043', tel:'+61 3 9093 6500', status:'已订', note:'尊贵一室公寓（双床）· 无餐食 · ⚠ 非 24 小时前台（入住登记截止「次日 00:00」），22:15 落地须赶午夜前到店 · 免费班车 T2 外上车 · 离店 10:00 前'},
+  {city:'悉尼', nights:'9/27–9/29（2 晚）', name:'Sheraton Grand Sydney Hyde Park 悉尼海德公园喜来登', addr:'161 Elizabeth Street, Sydney NSW 2000', tel:'+61-2-92866000', status:'已订（万豪）', note:'CBD 核心，步行可达海德公园 / 环形码头'},
+  {city:'凯恩斯', nights:'9/29–10/2（3 晚）', name:'Crystalbrook Bailey 克里斯托布鲁克·贝利', addr:'Ground Floor, A/163 Abbott St, Cairns QLD 4870', tel:'+61 7 4253 4000', status:'已订（Fliggy）', note:'Urban Twin 城市双床房 · 不含早餐'},
+  {city:'墨尔本', nights:'10/2–10/5（3 晚）', name:'Element Melbourne Richmond 墨尔本里士满源宿', addr:'588 Swan Street, Richmond VIC 3121', tel:'+61-3-91128888', status:'已订（万豪 · 积分兑换）', note:'大床房 · 含 WiFi · 酒店内停车约 AUD 35/天'}
 ];
 
 /* ---- 已订 / 待订的门票与一日游 ---- */
 const TOURS = [
-  {name:'丹翠雨林 + 苦难角深度一日游', date:'9/30 周三', time:'07:30 酒店接送 · 07:40 上车', addr:'集合点：NOVOTEL OASIS – 122 LAKE STREET（就近约 500m 集合）', status:'待确认', book:'需提前订', note:'含 Mossman Gorge、Daintree River 鳄鱼河游船、Cape Tribulation、Thornton Beach 午餐'},
-  {name:'银梭号大堡礁一日游 Quicksilver', date:'10/1 周四', time:'07:30–08:30 市区 & 北部沙滩接 · 10:00 船出发 · 约 18:00 送回', addr:'道格拉斯港 Port Douglas 出发 → 阿金考特礁 Agincourt Reef', status:'已订', book:'含接送套餐', note:'优先选择可免费改期 / 退款（风大常取消）'},
-  {name:'普芬比利蒸汽小火车半日游', date:'10/3 周六', time:'14:30–15:00 市区酒店接 · 16:40–17:40 乘坐 · 19:00 返回市区', addr:'丹顿农山脉 Dandenong Ranges', status:'待确认', book:'⚠ 极易售罄', note:'周六 + 维州春假，务必尽早锁位'},
-  {name:'大洋路反向一日游（精品小团）', date:'10/4 周日', time:'全天（早出晚归）', addr:'集合点：Element Melbourne Richmond 22 Russell St（打车约 15 分钟）', status:'待确认', book:'需提前订', note:'Geelong → Apollo Bay → 十二门徒岩 → 洛克阿德峡谷'}
+  {name:'丹翠雨林 + 苦难角 + 鳄鱼河游船一日游（英文团）', date:'9/30 周三', time:'07:40 集合（NOVOTEL OASIS 122 LAKE STREET）· 全天约 17:00 返', addr:'集合点：Novotel Cairns Oasis Resort, 122 Lake St, Cairns', status:'已确认', book:'已订（深度游 · 英文团）', note:'景区紧急电话 07 4042 7300；Mossman Gorge / Daintree River 鳄鱼河游船（约 1h）/ Cape Tribulation / Thornton Beach 午餐 / Daintree Ice Cream'},
+  {name:'银梭号 Quicksilver 大堡礁一日游', date:'10/1 周四', time:'08:05 集合（Crystalbrook Bailey 163 Abbott St）· 18:00 送回', addr:'Quicksilver Port Douglas Marina, Wharf Street, Port Douglas', status:'已确认', book:'已订 · 含 10 分钟直升机 + 市区&北部沙滩接送 + 加购深潜 ×2（含湿衣）', note:'船公司紧急 07 4087 2100；登船后找工作人员确认直升机时间；现金带好（潜水自拍/纪念品可能需）'},
+  {name:'普芬比利蒸汽小火车半日游（中文团）', date:'10/3 周六', time:'14:30 出发（具体时间出团前 1 天 20 点扫码/短信通知）· 约 19:00 返', addr:'集合点：Grand Hyatt Melbourne, 22 Russell St, Melbourne', status:'已确认', book:'已订（中文团）', note:'实际接人时间以出团前 1 天扫码确认为准；提前 5 分钟到，过时不候'},
+  {name:'大洋路反向一日游（50 人团）', date:'10/4 周日', time:'全天（具体时间出团前 1 天 20 点扫码通知）· 晚归', addr:'集合点：22 Russell St, Melbourne VIC 3000', status:'已确认', book:'已订（50 人团 · 网红司导）', note:'现金 5 澳元/人 小费 · 车队紧急 +61 380 802 288；吉朗 → 阿波罗湾 → 十二门徒 → 洛克阿德峡谷；当天夏令时生效 +1 小时'}
 ];
 
 /* ---- 逐日行程 ---- */
 const DAYS = [
 {
-  n:1, date:'9/25', dow:'周五', color:'#e0a020', title:'上海 → 河内', stay:'河内机场附近酒店（待补名称）',
+  n:1, date:'9/25', dow:'周五', color:'#e0a020', title:'上海 → 河内', stay:'Blue Sky Noi Bai Hotel and Pool',
   risk:null,
   items:[
     {t:'11:30', title:'从市区出发 → 上海浦东机场 T1', desc:'国际航班留足 3 小时缓冲，建议 12:50 前到达', map:'上海浦东国际机场T1'},
     {t:'15:50', title:'VN533 起飞（UTC+8）', flight:true, map:'上海浦东国际机场T1'},
     {t:'18:25', title:'抵达河内内排 T2（UTC+7）', flight:true, desc:'比北京时间慢 1 小时', map:'Noi Bai International Airport Terminal 2'},
-    {t:'19:30', title:'前往机场附近酒店', desc:'一碗 Pho + 早休息；今晚任务不是玩河内，是恢复体力', map:'Noi Bai International Airport'}
+    {t:'19:30', title:'前往机场附近酒店 · Blue Sky Noi Bai', desc:'一碗 Pho + 早休息；今晚任务不是玩河内，是恢复体力', map:'Blue Sky Noi Bai Hotel And Pool 17 Ngo Dinh 2 Thon Dien Xa Xa Noi Bai Ha Noi'}
   ]
 },
 {
-  n:2, date:'9/26', dow:'周六', color:'#2a9d8f', title:'河内 → 墨尔本（长途飞行日）', stay:'墨尔本（机场附近或市区）待补名称',
-  risk:'这是全程最耗的一段：9h30m 飞行。落地 22:15 后过海关 + 检疫，到酒店大概率已近午夜。',
+  n:2, date:'9/26', dow:'周六', color:'#2a9d8f', title:'河内 → 墨尔本（长途飞行日）', stay:'Mantra Melbourne Airport',
+  risk:'这是全程最耗的一段：9h30m 飞行。落地 22:15 后过海关 + 检疫，到酒店大概率已近午夜。<b>注意：</b>Mantra 机场酒店<b>非 24 小时前台</b>，入住登记截止「次日 00:00」——务必赶在午夜前到店办入住，晚了可能没人接待。',
   items:[
     {t:'06:30', title:'出发前往机场', desc:'建议 06:45–07:00 到 T2', map:'Noi Bai International Airport Terminal 2'},
     {t:'09:45', title:'VN779 起飞（UTC+7）', flight:true},
     {t:'22:15', title:'抵达墨尔本 MEL T2（UTC+10）', flight:true, desc:'澳洲入境检疫极严，请如实申报食品 / 药品 / 木制品 / 泥鞋'},
-    {t:'23:30', title:'入住酒店', desc:'别排任何活动，直接睡', map:'Melbourne Airport'}
+    {t:'23:30', title:'入住酒店', desc:'Mantra 机场酒店，班车 T2 外上车；⚠ 前台非 24 小时，登记截止「次日 00:00」，务必午夜前到店；直接睡', map:'Mantra Melbourne Airport'}
   ]
 },
 {
@@ -317,15 +329,15 @@ const DAYS = [
     {t:'15:00', title:'到达 SYD T3', desc:'起飞前 3h20m 到达，缓冲充足', flight:true},
     {t:'18:20', title:'QF1878 起飞（UTC+10）', flight:true},
     {t:'21:30', title:'抵达凯恩斯 CNS T2', flight:true, map:'Cairns Airport'},
-    {t:'22:30', title:'入住 Crystalbrook Bailey', desc:'凯恩斯比悉尼晚——昆州不实行夏令时', map:'Crystalbrook Bailey Cairns'}
+    {t:'22:30', title:'入住 Crystalbrook Bailey', desc:'凯恩斯比悉尼晚——昆州不实行夏令时；Urban Twin 城市双床房', map:'Crystalbrook Bailey 163 Abbott St Cairns'}
   ]
 },
 {
   n:6, date:'9/30', dow:'周三', color:'#2d6a4f', title:'凯恩斯｜丹翠雨林 + 苦难角一日游', stay:'Crystalbrook Bailey, Cairns',
   risk:'全天户外、车程长，是<b>体力消耗最大的一天</b>。前一晚务必睡够；10 月水母季刚启动，涉水活动听从向导安排。',
   items:[
-    {t:'07:30', title:'酒店接送', desc:'酒店不能长时间停车，需就近约 500m 集合', book:true},
-    {t:'07:40', title:'NOVOTEL OASIS 上车', desc:'122 LAKE STREET（以确认单为准）', book:true, map:'Novotel Cairns Oasis Resort 122 Lake Street'},
+    {t:'07:30', title:'到 Novotel Oasis 集合点', desc:'提前 10 分钟到（NOVOTEL OASIS 122 LAKE STREET，离 Crystalbrook Bailey 约 500m 步行可达）', book:true, map:'Novotel Cairns Oasis Resort 122 Lake Street'},
+    {t:'07:40', title:'上车出发', desc:'出示电子确认单登车；如等 10 分钟未到车，拨打景区 07 4042 7300', book:true},
     {t:'上午', title:'茅斯曼峡谷 Mossman Gorge', desc:'雨林步道', map:'Mossman Gorge'},
     {t:'中午', title:'丹翠河 Daintree River 游船', desc:'约 1 小时，红树林 + 河口鳄鱼', map:'Daintree River Cruise Centre'},
     {t:'下午', title:'苦难角 Cape Tribulation', desc:'穿越雨林，Thornton Beach 午餐', map:'Cape Tribulation'},
@@ -335,15 +347,16 @@ const DAYS = [
 },
 {
   n:7, date:'10/1', dow:'周四', color:'#0077b6', title:'凯恩斯｜银梭号大堡礁一日游', stay:'Crystalbrook Bailey, Cairns',
-  risk:'外堡礁<b>因风大取消很常见</b>。订的时候务必选"可免费改期 / 退款"。若取消，备选：改到 10/2 上午；或市区平替 Cairns Aquarium / 凯恩斯夜市。',
+  risk:'外堡礁<b>因风大取消很常见</b>。今天已订 <b>10 分钟直升机 + 深潜 ×2（含湿衣）</b>，登船后立即找工作人员确认直升机时间。',
   items:[
-    {t:'07:30', title:'市区 & 北部沙滩酒店接', desc:'07:30–08:30 接驳；道格拉斯港客人 09:00–09:30 接', book:true},
-    {t:'09:15', title:'道格拉斯港办理 check-in', map:'Port Douglas'},
+    {t:'08:05', title:'Crystalbrook Bailey 门口集合', desc:'Quicksilver 大巴车身有 Quicksilver 标识；提前 5–10 分钟到', book:true, map:'Crystalbrook Bailey 163 Abbott St Cairns'},
+    {t:'09:15', title:'Quicksilver Port Douglas Marina 办 check-in', desc:'码头地址 The Quicksilver office, at the Port Douglas Marina on Wharf Street, Port Douglas', map:'Quicksilver Port Douglas Marina'},
     {t:'10:00', title:'银梭号双体船出发', desc:'船上播放大堡礁生态影片 + 浮潜演示'},
-    {t:'11:30', title:'抵达阿金考特礁', desc:'自由活动（浮潜 / 半潜艇 / 海底观察站）', map:'Agincourt Reef'},
+    {t:'10:30', title:'前往阿金考特礁途中'},
+    {t:'11:30', title:'抵达阿金考特礁', desc:'自由活动（浮潜 / 半潜艇 / 海底观察站 / <b>10 分钟直升机</b> / <b>深潜体验</b>）', map:'Agincourt Reef'},
     {t:'12:00', title:'自助午餐'},
     {t:'15:00', title:'离开阿金考特礁'},
-    {t:'16:30', title:'返回道格拉斯港'},
+    {t:'16:30', title:'返回 Port Douglas'},
     {t:'18:00', title:'送回凯恩斯各区域酒店'},
     {t:'晚上', title:'酒店附近简餐 + 早休息', desc:'早起晚归的一天'}
   ]
@@ -363,12 +376,12 @@ const DAYS = [
 },
 {
   n:9, date:'10/3', dow:'周六', color:'#6a4c93', title:'墨尔本｜休息 + 普芬比利蒸汽小火车', stay:'Element Melbourne Richmond',
-  risk:'凌晨才到，上午务必留白。<b>普芬比利在周六 + 春假档极易售罄</b>，务必确认已出票再出行；若未订上，下午改市区（NGV / ACMI / 州立图书馆）。',
+  risk:'凌晨才到，上午务必留白。普芬比利<b>已订中文团</b>，<b>具体接人时间出团前 1 天 20 点扫码/短信通知</b>，以通知为准；提前 5 分钟到、过时不候。',
   items:[
     {t:'上午', title:'休息调整', desc:'补觉优先，别硬排行程'},
     {t:'可选', title:'Queen Victoria Market', desc:'周六最热闹（周一休市）', map:'Queen Victoria Market Melbourne'},
     {t:'可选', title:'Hosier Lane / ACMI / NGV / 州立图书馆', desc:'均在 CBD，免费', map:'Hosier Lane Melbourne'},
-    {t:'14:30', title:'普芬比利蒸汽小火车 — 市区酒店接', desc:'14:30–15:00 接驳，约 5 小时含接送', book:true, map:'Puffing Billy Railway Belgrave'},
+    {t:'14:30', title:'Grand Hyatt Melbourne 集合', desc:'22 Russell St, Melbourne（实际接人时间以出团前 1 天扫码通知为准）', book:true, map:'Grand Hyatt Melbourne 22 Russell St'},
     {t:'16:40', title:'乘坐百年蒸汽小火车', desc:'穿梭丹顿农山脉（注意保暖）'},
     {t:'19:00', title:'返回市区'},
     {t:'晚上', title:'Richmond 餐厅用餐', map:'Richmond Melbourne'}
@@ -378,10 +391,11 @@ const DAYS = [
   n:10, date:'10/4', dow:'周日', color:'#198754', title:'墨尔本｜大洋路反向一日游', stay:'Element Melbourne Richmond',
   risk:'⚠ <b>今天 02:00 起进入夏令时（AEDT, UTC+11）</b>，凭空少 1 小时。<b>10/4 起悉尼 / 墨尔本比北京快 3 小时</b>（此前为 2 小时）。手机会自动跳，手表 / 相机 / 计时器不会。',
   items:[
-    {t:'早上', title:'打车至集合点', desc:'Element Melbourne Richmond, 22 Russell St（约 15 分钟 / 6.3km）', book:true, map:'Element Melbourne Richmond 22 Russell St'},
-    {t:'全天', title:'大洋路一日游（精品小团）', desc:'吉朗 Geelong → 阿波罗湾 Apollo Bay → 十二门徒岩 Twelve Apostles → 洛克阿德峡谷 Loch Ard Gorge', book:true, map:'Twelve Apostles'},
+    {t:'早上', title:'打车至 22 Russell St 集合点', desc:'从 Element 588 Swan St Richmond 出发约 15 分钟；实际接人时间以出团前 1 天扫码通知为准', book:true, map:'22 Russell St Melbourne VIC 3000'},
+    {t:'全天', title:'大洋路反向一日游（50 人团）', desc:'吉朗 Geelong → 阿波罗湾 Apollo Bay → 十二门徒岩 Twelve Apostles → 洛克阿德峡谷 Loch Ard Gorge', book:true, map:'Twelve Apostles'},
     {t:'傍晚', title:'洛克阿德峡谷看日落', desc:'大洋路当天光线最好的时候', map:'Loch Ard Gorge'},
-    {t:'晚上', title:'返回墨尔本', desc:'风大 + "southerly buster" 可能 20 分钟降 10°C，防风防水外套必带'}
+    {t:'晚上', title:'返回墨尔本', desc:'风大 + "southerly buster" 可能 20 分钟降 10°C，防风防水外套必带'},
+    {t:'小费', title:'💵 现金 5 澳元/人 给司机', desc:'行程结束前支付；准备好零钱', book:true}
   ]
 },
 {
@@ -412,23 +426,17 @@ const DAYS = [
 
 /* ---- 待办（纯列表，不可勾选）---- */
 const TODO = [
-  {t:'预订 / 复核银梭号大堡礁（10/1）—— 必须选可免费改期或退款的，含接送套餐', hot:true},
-  {t:'预订大洋路精品小团（10/4）—— 夏令时首日 + 长周末，车位紧张', hot:true},
-  {t:'预订普芬比利蒸汽小火车（10/3）—— 周六 + 春假，售罄风险最高的一项', hot:true},
-  {t:'预订丹翠雨林一日游（9/30）', hot:true},
-  {t:'购买旅游保险：医疗 ≥ 30 万人民币 + 紧急救援送返，并确认承保浮潜', hot:true},
-  {t:'向南方航空确认：广州中转行李是否直挂上海，还是需自提重托', hot:true},
-  {t:'在线值机 JQ504 / QF1878 / VA1298 三段澳洲国内航班'},
-  {t:'复核行李额：重点是捷星 JQ504 与维珍 VA1298（国内 App 买的额度建议官网再核一次）'},
-  {t:'确认 9/25 河内机场附近酒店名称与地址'},
-  {t:'确认 9/26 墨尔本住宿（机场附近 or 市区），决定 9/27 早上 05:30 还是 05:45 出发'},
-  {t:'补 5 家酒店的英文名称、完整地址与电话'},
-  {t:'兑换约 400 澳元现金（小面额 5/10/20/50 为主）'},
+  {t:'购买旅游保险：医疗 ≥ 30 万人民币 + 紧急救援送返，并明确承保休闲浮潜 / 深潜', hot:true},
+  {t:'确认 9/26 墨尔本住宿（机场附近 or 市区）—— 决定 9/27 早上 05:30 还是 05:45 出发', hot:true},
+  {t:'在线值机 JQ504（9/27）/ QF1878（9/29）/ VA1298（10/2）三段澳洲国内航班', hot:true},
+  {t:'复核行李额：捷星 JQ504 + 维珍 VA1298 国内 App 买的额度建议官网再核一次', hot:true},
+  {t:'兑换约 400 澳元现金（小面额 5/10/20/50 为主）+ 备好司机小费零钱（拼团 5 澳元/人现金）', hot:true},
   {t:'信用卡开通境外交易、告知银行行程日期，避免锁卡'},
   {t:'准备 Type I 转换头 + 一个中国排插（2 人设备多，一个头搞定全部）'},
-  {t:'准备 reef-safe 防晒霜 SPF50+、防水手机袋 / dry bag（10/1 浮潜用）'},
+  {t:'购买 reef-safe 防晒霜 SPF50+、防水手机袋 / dry bag、涉水鞋（10/1 浮潜 + 深潜用）'},
   {t:'常用药带足 + 英文说明或处方；入境如实申报'},
   {t:'手机存：澳洲紧急 000、保单 24h 救援热线、中国驻悉尼 / 墨尔本总领馆电话'},
+  {t:'10/3 普芬比利 + 10/4 大洋路 出发前 1 天 20 点扫确认单右上角二维码 / 查短信，确认接人时间 + 车牌'},
   {t:'把本页加入手机主屏幕，离线也能打开'}
 ];
 
@@ -472,6 +480,38 @@ const TIPS = [
     '澳洲不强制小费，餐厅或 café 留点零钱即可，不必按 15–20%。',
     '银联在澳洲不普及，别指望。',
     '越南（9/25–9/26）用越南盾，到当地再换，国内不必提前换。'
+  ]}
+];
+
+/* ---- 穿搭建议（按天气 / 景色 / 活动分块）---- */
+const OUTFITS = [
+  {area:'悉尼 9/27–9/29（20–22°C 白天 / 11–13°C 早晚 · 春天）', items:[
+    {icon:'👕', tip:'短袖 T + 薄长袖 + 针织外套（海风一吹就凉）'},
+    {icon:'👟', tip:'舒服运动鞋 —— 9/27 CBD 走 2h + 9/28 Bondi 步道 2–3km 别穿新鞋'},
+    {icon:'🕶', tip:'墨镜 + 宽檐帽 —— 白天 UV 8 起步，海边反射强'},
+    {icon:'🧥', tip:'9/28 Taronga 渡轮海风大，备一件防风外套'},
+    {icon:'🎒', tip:'小型帆布袋 / 斜挎包 —— 逛市集腾手'}
+  ]},
+  {area:'凯恩斯 9/29–10/2（27–29°C 白天 / 20–22°C 夜 · 旱季尾巴）', items:[
+    {icon:'👕', tip:'轻便快干短袖 + 短裤（9 月底湿度开始升）'},
+    {icon:'🩴', tip:'凉鞋 / 涉水鞋 —— 雨林步道 + 礁平台防滑'},
+    {icon:'🌞', tip:'reef-safe 防晒霜 SPF50+（10/1 浮潜必带）—— 普通化学防晒伤珊瑚'},
+    {icon:'👙', tip:'泳衣 + 防晒泳衣 rashie（10/1 用）—— 10 月水母季刚启动，船家发全身 stinger suit'},
+    {icon:'🧳', tip:'dry bag / 防水手机袋 —— 船和下水都要'},
+    {icon:'👔', tip:'酒店附近晚饭带一件薄长袖防蚊'}
+  ]},
+  {area:'墨尔本 10/2–10/5（20°C 白天 / 10°C 夜 · 风大 · 一天四季）', items:[
+    {icon:'🧥', tip:'三层叠穿是刚需：内层 T + 中层抓绒/针织 + 外层防风防水夹克'},
+    {icon:'🧣', tip:'围巾 + 10/4 大洋路必带 —— 海风 + "southerly buster" 可能 20 分钟降 10°C'},
+    {icon:'🥾', tip:'防水耐脏步行鞋 —— 市区巷子 + 大洋路都走'},
+    {icon:'☔', tip:'10 月多阵雨，轻便伞或冲锋衣兜里备着'},
+    {icon:'🌞', tip:'防晒照样每天（UV 8，风大不觉得晒但照样伤）'}
+  ]},
+  {area:'机舱 + 机场（长途段 9h30m）', items:[
+    {icon:'🧦', tip:'飞机上备厚袜 + 薄外套 —— 越航 VN779 经济舱会冷'},
+    {icon:'👟', tip:'拖鞋 / 一次性拖鞋，落地换'},
+    {icon:'🧣', tip:'9/27 早 MEL T4 冷，外套披身上'},
+    {icon:'🪪', tip:'护照 + 签证打印件随身（不托运）'}
   ]}
 ];
 
@@ -663,7 +703,7 @@ function renderBookings(){
     '<div class="bkgroup"><div class="bktitle">🎟 门票与一日游</div>' +
       '<table class="bk"><tr><th style="width:70px">日期</th><th>项目与集合信息</th></tr>' + tourRows + '</table></div>' +
     '<div class="bkgroup"><div class="bktitle">🚗 租车</div>' +
-      '<table class="bk"><tr><td class="na">本次行程<b>未安排租车</b>：城市内靠步行 + 公交 / 轻轨 / 渡轮，城际靠航班，一日游含接送，大洋路精品小团含全程用车。丹翠雨林若想自驾需国际驾照 + 英文翻译件。</td></tr></table></div>';
+      '<table class="bk"><tr><td class="na">本次行程<b>未安排租车</b>：城市内靠步行 + 公交 / 轻轨 / 渡轮，城际靠航班，一日游含接送，大洋路一日游（50 人团）含全程用车。丹翠雨林若想自驾需国际驾照 + 英文翻译件。</td></tr></table></div>';
 }
 
 /* ---------- 逐日 ---------- */
@@ -707,6 +747,10 @@ function renderRest(){
     '<li' + (t.hot ? ' class="hot"' : '') + '><span class="dot">▸</span><span>' + t.t + '</span></li>').join('');
   $('#tipBox').innerHTML = TIPS.map(t =>
     '<div class="tip"><h3>' + esc(t.h) + '</h3>' + t.p.map(x => '<p>' + x + '</p>').join('') + '</div>').join('');
+  $('#outfitBox').innerHTML = OUTFITS.map(g =>
+    '<div class="outfit"><h3>' + esc(g.area) + '</h3><ul>' +
+    g.items.map(it => '<li><span class="ic">' + esc(it.icon) + '</span><span class="tp">' + esc(it.tip) + '</span></li>').join('') +
+    '</ul></div>').join('');
   $('#foot').innerHTML = '本页面公开可见 —— 任何确认号 / 证件号 / 房间号均已排除。<br>' +
     '距离出发：' + FLIGHTS[0].depISO.slice(0,16).replace('T',' ') + '（UTC+8）<br>' +
     '<span style="opacity:.7">最后更新 2026-09-08 · 内容以已出票航班时间为锚 · 单文件离线可用</span>';
