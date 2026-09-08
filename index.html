@@ -154,7 +154,23 @@ ul.todo li.hot .dot{color:var(--danger)}
 .outfit li .ic{font-size:16px;line-height:1.2;flex:0 0 22px;text-align:center}
 .outfit li .tp{flex:1;color:var(--ink)}
 .foot{text-align:center;font-size:11px;color:var(--sub);margin-top:22px;line-height:1.7}
-@media (min-width:600px){ .tips{grid-template-columns:1fr 1fr} .outfits{grid-template-columns:1fr 1fr} }
+.wx-grid{display:grid;gap:6px;margin-top:4px}
+.wx{background:var(--paper);border:1px solid var(--line);border-radius:9px;padding:8px 11px;font-size:12.4px;line-height:1.55}
+.wx b{font-size:13.2px}
+.ly-grid{display:grid;gap:6px;margin-top:4px}
+.ly{background:var(--paper);border:1px solid var(--line);border-radius:9px;padding:9px 11px;font-size:12.6px;line-height:1.55}
+.pack-grp{background:var(--paper);border:1px solid var(--line);border-radius:9px;padding:9px 12px;margin:6px 0;font-size:12.6px}
+.pack-grp>b{font-size:13.2px;display:block;margin-bottom:4px}
+.pack-grp ul{margin:0;padding-left:18px}
+.pack-grp li{margin:2px 0;line-height:1.5}
+.dailyfit{display:grid;gap:5px;margin-top:4px}
+.dayfit{background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:7px 11px;font-size:12.3px;line-height:1.5}
+.dayfit b{font-size:12.7px}
+.pits{margin:10px 0 4px;padding:10px 12px;background:rgba(120,180,100,.08);border:1px solid rgba(120,180,100,.35);border-radius:9px;font-size:12.6px;line-height:1.6}
+.pits h3{margin-bottom:5px;font-size:13px}
+.pits div{margin:3px 0}
+.outfit-sub{margin:10px 0 4px;font-size:13.5px;font-weight:700;color:var(--ink)}
+@media (min-width:600px){ .tips{grid-template-columns:1fr 1fr} .outfits{grid-template-columns:1fr 1fr} .wx-grid{grid-template-columns:1fr 1fr} .ly-grid{grid-template-columns:repeat(3,1fr)} .dailyfit{grid-template-columns:1fr 1fr} }
 @media (max-width:400px){ .it .tm{flex:0 0 50px;font-size:11.5px} .cd .n{font-size:21px} }
 </style>
 </head>
@@ -264,7 +280,7 @@ const TOURS = [
 const DAYS = [
 {
   n:1, date:'9/25', dow:'周五', color:'#e0a020', title:'上海 → 河内', stay:'Blue Sky Noi Bai Hotel and Pool',
-  risk:null,
+  risk:'⚠ <b>大件行李应直挂墨尔本</b>（VN533+VN779 联程行李直挂），河内过夜只带随身小包（换洗 + 洗漱 + 充电）。上海浦东值机时跟柜台再确认一次。',
   items:[
     {t:'11:30', title:'从市区出发 → 上海浦东机场 T1', desc:'国际航班留足 3 小时缓冲，建议 12:50 前到达', map:'上海浦东国际机场T1'},
     {t:'15:50', title:'VN533 起飞（UTC+8）', flight:true, map:'上海浦东国际机场T1'},
@@ -427,16 +443,20 @@ const DAYS = [
 /* ---- 待办（纯列表，不可勾选）---- */
 const TODO = [
   {t:'购买旅游保险：医疗 ≥ 30 万人民币 + 紧急救援送返，并明确承保休闲浮潜 / 深潜', hot:true},
+  {t:'越南 e-visa ✅ 已办 —— 打印件随身（浦东值机 + 河内入境都要看）', hot:true},
+  {t:'✅ 全部航班已购托运额度（其中两段国内段为 20kg）—— 在线值机时核对额度已挂在订单上；20kg 那两段装箱注意别超重', hot:true},
   {t:'致电 Mantra Melbourne Airport（+61 3 9093 6500）告知 9/26 约 23:30 才到店：确认前台有人 + 班车怎么坐（前台非 24 小时，登记截止次日 00:00）', hot:true},
   {t:'在线值机 JQ504（9/27）/ QF1878（9/29）/ VA1298（10/2）三段澳洲国内航班', hot:true},
-  {t:'复核行李额：捷星 JQ504 + 维珍 VA1298 国内 App 买的额度建议官网再核一次', hot:true},
   {t:'兑换约 400 澳元现金（小面额 5/10/20/50 为主）+ 备好司机小费零钱（拼团 5 澳元/人现金）', hot:true},
+  {t:'换少量越南盾（9/25 河内一晚用：河粉 / 洗头 / 打车）'},
+  {t:'买/激活当地电话卡：越南 eSIM（9/25 落地激活）+ 澳洲 SIM（落地墨尔本机场 buy，沃达丰 / Telstra prepaid 4G 12 天约 AUD 30–50）', hot:true},
   {t:'信用卡开通境外交易、告知银行行程日期，避免锁卡'},
-  {t:'准备 Type I 转换头 + 一个中国排插（2 人设备多，一个头搞定全部）'},
-  {t:'购买 reef-safe 防晒霜 SPF50+、防水手机袋 / dry bag、涉水鞋（10/1 浮潜 + 深潜用）'},
-  {t:'常用药带足 + 英文说明或处方；入境如实申报'},
+  {t:'买 myki 卡（墨尔本公交 / 电车 / 免费 CBD 电车区都要用）'},
+  {t:'10/2 凌晨 00:30 抵墨尔本 → 提前确认去 Element Richmond 的交通（打车 / SkyBus）'},
+  {t:'租大疆（10/1 大堡礁想航拍的话提前订，船上不一定有）'},
+  {t:'9/28、10/3、10/5 午餐餐厅可现场定，不强需；10/5 市区路线可现场决定南→北还是北→南'},
+  {t:'10/3 普芬比利 + 10/4 大洋路：出发前 1 天 20 点扫确认单右上角二维码 / 查短信，确认接人时间 + 车牌'},
   {t:'手机存：澳洲紧急 000、保单 24h 救援热线、中国驻悉尼 / 墨尔本总领馆电话'},
-  {t:'10/3 普芬比利 + 10/4 大洋路 出发前 1 天 20 点扫确认单右上角二维码 / 查短信，确认接人时间 + 车牌'},
   {t:'把本页加入手机主屏幕，离线也能打开'}
 ];
 
@@ -461,6 +481,11 @@ const TIPS = [
     '澳洲 Type I 三扁插，电压 230V（兼容中国 220V，不用变压器）。',
     '建议组合：1 个 Type I 转换头 + 1 个中国排插，只占墙上 1 个口。'
   ]},
+  {h:'悉尼 Opal + 墨尔本电车', p:[
+    '<b>悉尼 Opal</b>：周日单日封顶最低（约 AUD 2.80），整天坐公交 / 渡轮不心疼。9/27 周日 CBD 往返 + 周日市集 + 岩石区全靠它。',
+    '<b>墨尔本 myki</b>：CBD 电车区（35 路、Circle Tram）永久免费，无需刷卡；出 CBD 才要刷。myki 卡机场 7-11 / 便利店都有。',
+    'Jetstar 廉航对手提严：JQ504 限制 7kg 且无电脑包豁免，电子产品充电宝全放随身。',
+  ]},
   {h:'紧急情况', p:[
     '澳洲报警 / 急救 / 消防统一 000。',
     '手机存好保单 24h 救援热线与中国驻悉尼 / 墨尔本总领馆电话。',
@@ -483,36 +508,88 @@ const TIPS = [
   ]}
 ];
 
-/* ---- 穿搭建议（按天气 / 景色 / 活动分块）---- */
-const OUTFITS = [
-  {area:'悉尼 9/27–9/29（20–22°C 白天 / 11–13°C 早晚 · 春天）', items:[
-    {icon:'👕', tip:'短袖 T + 薄长袖 + 针织外套（海风一吹就凉）'},
-    {icon:'👟', tip:'舒服运动鞋 —— 9/27 CBD 走 2h + 9/28 Bondi 步道 2–3km 别穿新鞋'},
-    {icon:'🕶', tip:'墨镜 + 宽檐帽 —— 白天 UV 8 起步，海边反射强'},
-    {icon:'🧥', tip:'9/28 Taronga 渡轮海风大，备一件防风外套'},
-    {icon:'🎒', tip:'小型帆布袋 / 斜挎包 —— 逛市集腾手'}
+/* ---- 穿搭与打包（气温速览 / 三层法 / 打包清单 / 每日穿搭）---- */
+const WEATHER = [
+  {city:'河内',    dates:'9/25–26',            day:'31°C',     night:'24°C',     note:'雨季末闷热高湿；室内冷气猛，需薄外搭'},
+  {city:'墨尔本',  dates:'9/26–27 · 10/2–5',  day:'18–19°C',  night:'8–9°C',    note:'全程最冷，一天四季，风大。早晚外套，白天可脱'},
+  {city:'悉尼',    dates:'9/27–29',            day:'21–23°C',  night:'12–14°C',  note:'春季舒适，海风大、昼夜温差 8–10°C，海岸步道体感更低'},
+  {city:'凯恩斯',  dates:'9/29–10/2',          day:'28–31°C',  night:'20–22°C',  note:'热带干季末，湿热+紫外线极强；10 月起进入水母季'},
+  {city:'广州',    dates:'10/6',               day:'28°C',     night:'20°C',     note:'中转半日，轻薄即可'}
+];
+const LAYERS = [
+  {n:'1', name:'贴身排汗', role:'凯恩斯主力',     items:'速干短袖 / 薄长袖 · 选速干不选纯棉'},
+  {n:'2', name:'中间保暖', role:'悉尼墨尔本白天', items:'薄针织 / 卫衣 / 衬衫 · 进室内脱外层留这层'},
+  {n:'3', name:'外层防风', role:'大洋路 / 夜航 / 海边', items:'防风外套 + 轻薄羽绒 · 唯一占体积的一层'}
+];
+const PACK = [
+  {cat:'上装 8 件', items:[
+    '短袖 T × 3（至少 1 件速干）',
+    '薄长袖上衣 × 2（1 件带 UPF 防晒）',
+    '薄针织 / 卫衣 × 1',
+    '薄衬衫 × 1（可当防晒外搭，也能撑晚餐场面）',
+    '轻薄羽绒 / 抓绒 × 1（可压缩款）'
   ]},
-  {area:'凯恩斯 9/29–10/2（27–29°C 白天 / 20–22°C 夜 · 旱季尾巴）', items:[
-    {icon:'👕', tip:'轻便快干短袖 + 短裤（9 月底湿度开始升）'},
-    {icon:'🩴', tip:'凉鞋 / 涉水鞋 —— 雨林步道 + 礁平台防滑'},
-    {icon:'🌞', tip:'reef-safe 防晒霜 SPF50+（10/1 浮潜必带）—— 普通化学防晒伤珊瑚'},
-    {icon:'👙', tip:'泳衣 + 防晒泳衣 rashie（10/1 用）—— 10 月水母季刚启动，船家发全身 stinger suit'},
-    {icon:'🧳', tip:'dry bag / 防水手机袋 —— 船和下水都要'},
-    {icon:'👔', tip:'酒店附近晚饭带一件薄长袖防蚊'}
+  {cat:'下装 5 件', items:[
+    '短裤 × 2（凯恩斯主力）',
+    '舒适长裤 × 2（1 条步道运动款）',
+    '半裙 / 连衣裙 × 1（晚餐 + 拍照）'
   ]},
-  {area:'墨尔本 10/2–10/5（20°C 白天 / 10°C 夜 · 风大 · 一天四季）', items:[
-    {icon:'🧥', tip:'三层叠穿是刚需：内层 T + 中层抓绒/针织 + 外层防风防水夹克'},
-    {icon:'🧣', tip:'围巾 + 10/4 大洋路必带 —— 海风 + "southerly buster" 可能 20 分钟降 10°C'},
-    {icon:'🥾', tip:'防水耐脏步行鞋 —— 市区巷子 + 大洋路都走'},
-    {icon:'☔', tip:'10 月多阵雨，轻便伞或冲锋衣兜里备着'},
-    {icon:'🌞', tip:'防晒照样每天（UV 8，风大不觉得晒但照样伤）'}
+  {cat:'外套与鞋 2 + 3', items:[
+    '防风外套 × 1 · 必带（大洋路、海岸步道全靠它）',
+    '轻薄羽绒 × 1（墨尔本 8°C 早晚）',
+    '运动鞋 × 1 · 必带 · 日均 1.5 万步',
+    '凉鞋 / 拖鞋 × 1（凯恩斯海滩、酒店）',
+    '乐福鞋 / 低跟 × 1（可选，晚餐用）'
   ]},
-  {area:'机舱 + 机场（长途段 9h30m）', items:[
-    {icon:'🧦', tip:'飞机上备厚袜 + 薄外套 —— 越航 VN779 经济舱会冷'},
-    {icon:'👟', tip:'拖鞋 / 一次性拖鞋，落地换'},
-    {icon:'🧣', tip:'9/27 早 MEL T4 冷，外套披身上'},
-    {icon:'🪪', tip:'护照 + 签证打印件随身（不托运）'}
+  {cat:'内衣与睡衣', items:[
+    '内衣 × 6 · 袜子 × 6（含 2 双厚袜）· 睡衣 × 1'
+  ]},
+  {cat:'水上与防晒（凯恩斯重点）', items:[
+    '泳衣 × 2（湿了有替换）',
+    '速干浴巾 × 1',
+    '防水手机袋 + dry bag',
+    'reef-safe 防晒霜 SPF50+ · 必带 · 大堡礁禁普通防晒（当地贵 2 倍）',
+    '宽檐帽 + 墨镜',
+    '防晒衣 / rash guard（浮潜防蛰 + 防晒）'
+  ]},
+  {cat:'配件', items:[
+    '小背包 × 1（一日游用，可折叠）',
+    '折叠伞 / 一次性雨衣（墨尔本阵雨）',
+    '围巾 / 丝巾 × 1（墨尔本保暖 + 拍照）',
+    '压缩收纳袋若干（分层收纳）'
+  ]},
+  {cat:'药品', items:[
+    '晕船药 · 必带 · 外堡礁船程 1.5–2h，登船前 30–60 分钟服',
+    '防蚊液（丹翠雨林必备，选含 DEET / 派卡瑞丁）',
+    '感冒药 / 肠胃药 / 创可贴',
+    '个人常备处方药（带原包装 + 英文说明）'
+  ]},
+  {cat:'电子与证件', items:[
+    '澳洲 I 型转换插头 · 必带（中国插头插不进）',
+    '充电宝（只能随身，禁托运）',
+    '相机 / 水下相机（大堡礁值得带）',
+    '护照 + 澳洲签证打印件',
+    '✅ 越南 e-visa 打印件（已办）',
+    '旅行保险单 + 航班行程单'
   ]}
+];
+const DAILYOUTFIT = [
+  {d:'9/25 五', title:'上海 → 河内',                        text:'短袖 + 薄长裤 + 薄外套',  note:'外套随身别托运（机舱冷气足）；河内落地湿热，下机脱'},
+  {d:'9/26 六', title:'河内 → 墨尔本（10h 夜航）',          text:'飞机装：长裤 + 短袖 + 薄针织；厚外套放随身', note:'22:15 落地墨尔本夜间 8–10°C，出机场前必须穿上外套'},
+  {d:'9/27 日', title:'墨尔本 → 悉尼（CBD 漫步 + 市集 + 夜景）', text:'长袖 + 薄针织 + 防风外套，运动鞋', note:'环码头夜景风大，体感比气温低 3–5°C'},
+  {d:'9/28 一', title:'鱼市场 / 悉尼大学 / 塔龙加 / 达令港', text:'T + 薄外套，舒适运动鞋',  note:'步行量最大的一天；渡轮海风大，帽子要能压住 · 别穿新鞋'},
+  {d:'9/29 二', title:'Bondi–Coogee 海岸步道 → 晚飞凯恩斯', text:'上午运动装 + 防风外套；落地换短袖短裤', note:'6km 海崖步道风大；凯恩斯 21:30 落地，夏装放手边'},
+  {d:'9/30 三', title:'丹翠雨林 + 苦难角一日游',           text:'速干短袖 + 薄长裤，徒步鞋',  note:'林内闷热多蚊虫，长裤防蚊；防蚊液提前涂'},
+  {d:'10/1 四', title:'大堡礁银梭号（浮潜 + 直升机）',     text:'泳衣内穿 + 防晒衣外罩，拖鞋，宽檐帽', note:'10 月起是水母季，船公司通常提供 stinger suit，上船先领；晕船药提前吃'},
+  {d:'10/2 五', title:'凯恩斯休闲 → 21:00 飞墨尔本（00:30 落地）', text:'白天夏装；飞机上外套随身', note:'凌晨落地墨尔本最冷，外套别塞托运箱'},
+  {d:'10/3 六', title:'墨尔本市区 + 普芬比利蒸汽小火车',   text:'分层：T + 薄针织 + 防风外套，围巾', note:'墨尔本一天四季随时穿脱；阵雨带折叠伞 · 火车建议穿深色衣服（有煤灰）'},
+  {d:'10/4 日', title:'大洋路一日游（重点）',               text:'防风外套 + 帽子 + 分层，运动鞋', note:'⚠ 长周末人流多 + 零食带上 · 全天户外 12h，十二门徒岩海风极猛'},
+  {d:'10/5 一', title:'墨尔本市区 → 22:10 夜飞广州',       text:'舒适分层，留一件干净衣服换上登机', note:'18:30 去机场；伴手礼集中这天买，注意别超行李额（20kg 段）'},
+  {d:'10/6 二', title:'广州 → 上海',                        text:'轻薄即可', note:'中转半日，到家'}
+];
+const PITFALLS = [
+  {h:'坑一 · 捷星 JQ504 无免费托运（已处理）', body:'✅ 已购 20kg 托运额度（值机时确认挂在订单上）。基础票不含任何免费托运，机场补买 20kg 约 AUD 120 起；手提限制 7kg 称重严。两人合买 1 件更划算。'},
+  {h:'坑二 · 河内过夜需越南签证（已处理）',   body:'✅ e-visa 已办，打印件随身（浦东值机 + 河内入境都要看）。9/25 落地河内住酒店 = 实际入境越南，不是免签中转（富国岛免签不适用河内）。'}
 ];
 
 /* =======================================================================
@@ -749,16 +826,50 @@ function renderDays(){
   });
 }
 
+/* ---------- 穿搭与打包渲染 ---------- */
+function renderOutfit(){
+  // 气温速览
+  const w = '<div class="outfit-sub">气温速览（历史同期均值）</div><div class="wx-grid">' +
+    WEATHER.map(c =>
+      '<div class="wx"><b>'+esc(c.city)+'</b> <span class="na">'+esc(c.dates)+'</span><br>' +
+      '<b>白天</b> '+esc(c.day)+' · <b>夜间</b> '+esc(c.night)+'<br>' +
+      '<span class="na">'+esc(c.note)+'</span></div>'
+    ).join('') + '</div>';
+
+  // 三层法
+  const ly = '<div class="outfit-sub">核心策略 · 三层法</div><div class="ly-grid">' +
+    LAYERS.map(l =>
+      '<div class="ly"><b>LAYER '+l.n+'</b> · '+esc(l.name)+'<br><span class="na">'+esc(l.role)+'</span><br>'+esc(l.items)+'</div>'
+    ).join('') + '</div>' +
+    '<div class="na" style="margin:6px 0 0;font-size:12px;line-height:1.6">配置逻辑：外套只带 2 件（1 防风 + 1 轻薄羽绒），靠换内搭撑过 12 天。羽绒选可压缩款，压缩后约 1L。配色：主色锁定 白 / 米 / 卡其 / 牛仔蓝 / 黑；再带 1 件亮色（砖红或姜黄）点缀拍照。</div>';
+
+  // 打包清单
+  const pk = '<div class="outfit-sub">打包清单</div>' +
+    PACK.map(g =>
+      '<div class="pack-grp"><b>'+esc(g.cat)+'</b><ul>' +
+      g.items.map(it => '<li>'+esc(it)+'</li>').join('') + '</ul></div>'
+    ).join('');
+
+  // 每日穿搭
+  const dy = '<div class="outfit-sub">每日穿搭速查</div><div class="dailyfit">' +
+    DAILYOUTFIT.map(d =>
+      '<div class="dayfit"><b>'+esc(d.d)+'</b> · '+esc(d.title)+'<br><b>穿：</b>'+esc(d.text)+'<br><span class="na">'+esc(d.note)+'</span></div>'
+    ).join('') + '</div>';
+
+  // 两坑已处理
+  const pt = '<div class="pits"><h3>⚠ 两个必须处理的坑（已处理）</h3>' +
+    PITFALLS.map(p => '<div><b>'+esc(p.h)+'</b>：'+p.body+'</div>').join('') + '</div>';
+
+  $('#outfitBox').innerHTML = w + ly + pk + dy + pt;
+}
+
 /* ---------- 待办 & 贴士 ---------- */
 function renderRest(){
   $('#todoBox').innerHTML = TODO.map(t =>
     '<li' + (t.hot ? ' class="hot"' : '') + '><span class="dot">▸</span><span>' + t.t + '</span></li>').join('');
   $('#tipBox').innerHTML = TIPS.map(t =>
     '<div class="tip"><h3>' + esc(t.h) + '</h3>' + t.p.map(x => '<p>' + x + '</p>').join('') + '</div>').join('');
-  $('#outfitBox').innerHTML = OUTFITS.map(g =>
-    '<div class="outfit"><h3>' + esc(g.area) + '</h3><ul>' +
-    g.items.map(it => '<li><span class="ic">' + esc(it.icon) + '</span><span class="tp">' + esc(it.tip) + '</span></li>').join('') +
-    '</ul></div>').join('');
+  renderOutfit();
   $('#foot').innerHTML = '本页面公开可见 —— 任何确认号 / 证件号 / 房间号均已排除。<br>' +
     '距离出发：' + FLIGHTS[0].depISO.slice(0,16).replace('T',' ') + '（UTC+8）<br>' +
     '<span style="opacity:.7">最后更新 2026-09-08 · 内容以已出票航班时间为锚 · 单文件离线可用</span>';
