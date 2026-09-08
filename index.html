@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#fbf4ea" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#14181d" media="(prefers-color-scheme: dark)">
+<title>澳洲 · 越南 自由行手册｜2026.09.25 – 10.06</title>
+<style>
+:root{
+  --bg:#f6f1e8; --paper:#fffdf8; --ink:#232a30; --sub:#6b7078; --line:#ddd3c2;
+  --accent:#c2410c; --accent-soft:#fde8dc; --ok:#0f766e; --ok-soft:#d7f0ed;
+  --warn:#92400e; --warn-soft:#fdf0d5; --danger:#9f1239; --danger-soft:#fde8ef;
+  --flight:#1d4ed8; --flight-soft:#e2e9ff; --shadow:0 1px 3px rgba(60,45,25,.10);
+  --mapsea:#e8eef4; --mapland:#f3e6cf;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#14181d; --paper:#1c2229; --ink:#e7ecef; --sub:#9aa4ad; --line:#2e373f;
+    --accent:#fb923c; --accent-soft:#3a2416; --ok:#5eead4; --ok-soft:#12332f;
+    --warn:#fcd34d; --warn-soft:#3a2f12; --danger:#fda4af; --danger-soft:#3d1d27;
+    --flight:#93b4ff; --flight-soft:#1b2740; --shadow:0 1px 3px rgba(0,0,0,.4);
+    --mapsea:#1e2a33; --mapland:#33291c;
+  }
+}
+html[data-theme="light"]{
+  --bg:#f6f1e8; --paper:#fffdf8; --ink:#232a30; --sub:#6b7078; --line:#ddd3c2;
+  --accent:#c2410c; --accent-soft:#fde8dc; --ok:#0f766e; --ok-soft:#d7f0ed;
+  --warn:#92400e; --warn-soft:#fdf0d5; --danger:#9f1239; --danger-soft:#fde8ef;
+  --flight:#1d4ed8; --flight-soft:#e2e9ff; --shadow:0 1px 3px rgba(60,45,25,.10);
+  --mapsea:#e8eef4; --mapland:#f3e6cf;
+}
+html[data-theme="dark"]{
+  --bg:#14181d; --paper:#1c2229; --ink:#e7ecef; --sub:#9aa4ad; --line:#2e373f;
+  --accent:#fb923c; --accent-soft:#3a2416; --ok:#5eead4; --ok-soft:#12332f;
+  --warn:#fcd34d; --warn-soft:#3a2f12; --danger:#fda4af; --danger-soft:#3d1d27;
+  --flight:#93b4ff; --flight-soft:#1b2740; --shadow:0 1px 3px rgba(0,0,0,.4);
+  --mapsea:#1e2a33; --mapland:#33291c;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{
+  background:var(--bg);color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  line-height:1.62;padding:16px 13px 60px;-webkit-text-size-adjust:100%;
+}
+.wrap{max-width:760px;margin:0 auto}
+a{color:inherit}
+/* ---------- header ---------- */
+.hero{text-align:center;padding:6px 0 18px;position:relative}
+.hero h1{font-size:21px;letter-spacing:.5px}
+.hero .dates{color:var(--sub);font-size:13px;margin-top:3px}
+.hero .route{font-size:12px;color:var(--sub);margin-top:6px;line-height:1.5}
+.themeBtn{position:absolute;right:0;top:0;background:var(--paper);border:1px solid var(--line);
+  color:var(--sub);font-size:11px;padding:5px 9px;border-radius:999px;cursor:pointer}
+/* ---------- now card ---------- */
+.now{background:linear-gradient(160deg,var(--accent-soft),var(--paper));border:1px solid var(--line);
+  border-radius:16px;padding:16px 15px;margin-bottom:18px;box-shadow:var(--shadow)}
+.now .label{font-size:11px;letter-spacing:2px;color:var(--accent);font-weight:700}
+.now .evt{font-size:16px;font-weight:700;margin-top:5px}
+.now .when{font-size:12.5px;color:var(--sub);margin-top:3px}
+.cd{display:flex;gap:7px;margin-top:13px;flex-wrap:wrap}
+.cd .u{flex:1;min-width:62px;background:var(--paper);border:1px solid var(--line);border-radius:11px;
+  text-align:center;padding:8px 2px}
+.cd .n{font-size:24px;font-weight:800;font-variant-numeric:tabular-nums;line-height:1.15}
+.cd .t{font-size:10.5px;color:var(--sub);letter-spacing:1px}
+.now .localhint{font-size:11.5px;color:var(--sub);margin-top:9px}
+/* ---------- sections ---------- */
+section{margin-bottom:22px}
+h2{font-size:15px;display:flex;align-items:center;gap:7px;margin-bottom:11px}
+h2::before{content:"";width:4px;height:15px;background:var(--accent);border-radius:2px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);overflow:hidden}
+/* ---------- overview map ---------- */
+.mapcard{padding:12px 10px 6px}
+.mapcard svg{width:100%;height:auto;display:block}
+.legend{display:flex;flex-wrap:wrap;gap:6px 12px;padding:8px 12px 12px;font-size:11.5px;color:var(--sub)}
+.legend i{display:inline-block;width:16px;height:3px;border-radius:2px;vertical-align:middle;margin-right:5px}
+/* ---------- bookings ---------- */
+.bkgroup{margin-bottom:12px}
+.bktitle{font-size:12px;font-weight:700;color:var(--sub);letter-spacing:1px;margin:0 0 6px}
+table.bk{width:100%;border-collapse:collapse;font-size:13px;background:var(--paper);
+  border:1px solid var(--line);border-radius:12px;overflow:hidden}
+table.bk th{text-align:left;font-size:11.5px;color:var(--sub);font-weight:600;
+  padding:8px 10px;background:rgba(125,125,125,.06);border-bottom:1px solid var(--line)}
+table.bk td{padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+table.bk tr:last-child td{border-bottom:none}
+table.bk td.k{font-weight:600;white-space:nowrap}
+.tag{display:inline-block;font-size:10.5px;padding:1px 6px;border-radius:6px;
+  background:var(--flight-soft);color:var(--flight);font-weight:600;white-space:nowrap}
+.tag.ok{background:var(--ok-soft);color:var(--ok)}
+.tag.warn{background:var(--warn-soft);color:var(--warn)}
+.tag.dg{background:var(--danger-soft);color:var(--danger)}
+.maplink{display:inline-block;margin-top:3px;font-size:11.5px;color:var(--accent);
+  text-decoration:underline;text-underline-offset:2px}
+.na{color:var(--sub);font-size:12px}
+/* ---------- day ---------- */
+.day{margin-bottom:12px;border-left:4px solid var(--dc,var(--accent));border-radius:12px;
+  background:var(--paper);border:1px solid var(--line);border-left-width:4px;
+  border-left-color:var(--dc,var(--accent));box-shadow:var(--shadow);overflow:hidden}
+.dhead{padding:12px 13px;cursor:pointer;display:flex;gap:9px;align-items:flex-start}
+.dnum{flex:0 0 auto;width:38px;height:38px;border-radius:10px;background:var(--dc);color:#fff;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.05}
+.dnum .dd{font-size:13px;font-weight:800}
+.dnum .dw{font-size:9px;opacity:.9}
+.dinfo{flex:1;min-width:0}
+.dinfo .dt{font-size:14.5px;font-weight:700}
+.dinfo .ds{font-size:12px;color:var(--sub);margin-top:2px}
+.dinfo .dstay{font-size:11.5px;color:var(--sub);margin-top:4px}
+.dopen{flex:0 0 auto;font-size:11px;color:var(--sub);padding-top:4px}
+.dbody{display:none;border-top:1px dashed var(--line);padding:4px 0 10px}
+.day.open .dbody{display:block}
+.day.open .dopen::after{content:" ▴"}
+.dopen::after{content:" ▾"}
+.daymap{padding:8px 12px 4px}
+.daymap svg{width:100%;height:auto;display:block}
+.daynav{padding:2px 12px 10px}
+.daynav a{display:inline-block;font-size:12px;background:var(--accent);color:#fff;
+  padding:7px 12px;border-radius:9px;text-decoration:none;font-weight:600}
+.tl{padding:2px 0 0}
+.it{display:flex;gap:10px;padding:7px 13px}
+.it .tm{flex:0 0 58px;font-size:12px;font-weight:700;color:var(--accent);text-align:right;padding-top:1px;
+  font-variant-numeric:tabular-nums}
+.it .bd{flex:1;min-width:0;font-size:13.2px}
+.it .bd .bt{font-weight:600}
+.it .bd .bdsc{font-size:12px;color:var(--sub);margin-top:1px}
+.it.book .tm{color:var(--danger)}
+.it.flight .tm{color:var(--flight)}
+.badge{display:inline-block;font-size:10px;padding:1px 5px;border-radius:5px;margin-left:5px;
+  vertical-align:1px;font-weight:600}
+.badge.bk{background:var(--danger-soft);color:var(--danger)}
+.badge.rk{background:var(--warn-soft);color:var(--warn)}
+.risk{margin:8px 13px 2px;padding:9px 11px;border-radius:10px;background:var(--warn-soft);
+  font-size:12.2px;color:var(--warn);border:1px solid transparent}
+.risk b{color:var(--warn)}
+/* ---------- todo ---------- */
+ul.todo{list-style:none;background:var(--paper);border:1px solid var(--line);border-radius:14px;
+  padding:8px 0;box-shadow:var(--shadow)}
+ul.todo li{padding:8px 14px;font-size:13.2px;border-bottom:1px dashed var(--line);display:flex;gap:9px}
+ul.todo li:last-child{border-bottom:none}
+ul.todo li .dot{flex:0 0 auto;color:var(--accent);font-weight:700}
+ul.todo li.hot .dot{color:var(--danger)}
+.notehint{font-size:11.5px;color:var(--sub);margin-top:7px}
+/* ---------- tips ---------- */
+.tips{display:grid;gap:10px;grid-template-columns:1fr}
+.tip{background:var(--paper);border:1px solid var(--line);border-radius:13px;padding:11px 13px;box-shadow:var(--shadow)}
+.tip h3{font-size:13px;margin-bottom:5px}
+.tip p{font-size:12.5px;color:var(--sub)}
+.tip p+p{margin-top:4px}
+.foot{text-align:center;font-size:11px;color:var(--sub);margin-top:22px;line-height:1.7}
+@media (min-width:600px){ .tips{grid-template-columns:1fr 1fr} }
+@media (max-width:400px){ .it .tm{flex:0 0 50px;font-size:11.5px} .cd .n{font-size:21px} }
+</style>
+</head>
+<body data-theme="auto">
+<div class="wrap">
+
+<header class="hero">
+  <button class="themeBtn" id="themeBtn" type="button">◐ 配色</button>
+  <h1>澳洲 · 越南 自由行手册</h1>
+  <div class="dates">2026.09.25（周五） – 10.06（周二） · 2 人 · 共 12 天 11 晚</div>
+  <div class="route">上海 → 河内 → 墨尔本 → 悉尼 → 凯恩斯 → 墨尔本 → 广州 → 上海</div>
+</header>
+
+<section id="nowCard">
+  <div class="now" id="now">
+    <div class="label">此刻关注</div>
+    <div class="evt" id="nowEvt">—</div>
+    <div class="when" id="nowWhen">—</div>
+    <div class="cd" id="nowCd"></div>
+    <div class="localhint" id="nowHint">—</div>
+  </div>
+</section>
+
+<section id="overview">
+  <h2>行程总览地图</h2>
+  <div class="card">
+    <div class="mapcard" id="ovMap"></div>
+    <div class="legend" id="ovLegend"></div>
+  </div>
+</section>
+
+<section id="bookings">
+  <h2>已确认预订</h2>
+  <div id="bkBox"></div>
+</section>
+
+<section id="days">
+  <h2>逐日行程</h2>
+  <div id="dayBox"></div>
+</section>
+
+<section id="todoSec">
+  <h2>待办清单</h2>
+  <ul class="todo" id="todoBox"></ul>
+  <div class="notehint">本清单不做勾选（勾选只存在各自浏览器里，多人看到的不一样）。办完一项告诉我，我改页面。</div>
+</section>
+
+<section id="tipsSec">
+  <h2>实用贴士</h2>
+  <div class="tips" id="tipBox"></div>
+</section>
+
+<div class="foot" id="foot"></div>
+</div>
+
+<script>
+"use strict";
+/* =======================================================================
+   数据源（单一出处）—— 修改行程只需改这里
+   时刻一律带固定 UTC 偏移（+08:00 等），跨时区打开不会算错
+   ★ 隐私规则：不写入任何 确认号 / 证件号 / 房间号（公开网址谁都能看）
+   ======================================================================= */
+
+const TRIP = { people:2 };
+
+/* ---- 航班（已出票，作为全行程时间锚点） ---- */
+const FLIGHTS = [
+  {no:'VN533', air:'越南航空', leg:'上海 → 河内',
+   from:'上海浦东 T1', to:'河内内排 T2', depISO:'2026-09-25T15:50:00+08:00', arrISO:'2026-09-25T18:25:00+07:00', depTz:'UTC+8', arrTz:'UTC+7', note:''},
+  {no:'VN779', air:'越南航空', leg:'河内 → 墨尔本',
+   from:'河内内排 T2', to:'墨尔本 MEL T2', depISO:'2026-09-26T09:45:00+07:00', arrISO:'2026-09-26T22:15:00+10:00', depTz:'UTC+7', arrTz:'UTC+10', note:'飞行约 9h30m'},
+  {no:'JQ504', air:'捷星航空', leg:'墨尔本 → 悉尼',
+   from:'墨尔本 MEL T4', to:'悉尼 SYD T2', depISO:'2026-09-27T08:15:00+10:00', arrISO:'2026-09-27T09:45:00+10:00', depTz:'UTC+10', arrTz:'UTC+10', note:'⚠ 出发在 T4，与前一日国际到达的 T2 不同航站楼'},
+  {no:'QF1878', air:'澳洲航空', leg:'悉尼 → 凯恩斯',
+   from:'悉尼 SYD T3', to:'凯恩斯 CNS T2', depISO:'2026-09-29T18:20:00+10:00', arrISO:'2026-09-29T21:30:00+10:00', depTz:'UTC+10', arrTz:'UTC+10', note:''},
+  {no:'VA1298', air:'维珍澳洲', leg:'凯恩斯 → 墨尔本',
+   from:'凯恩斯 CNS T2', to:'墨尔本 MEL T3', depISO:'2026-10-02T21:00:00+10:00', arrISO:'2026-10-03T00:30:00+10:00', depTz:'UTC+10（凯恩斯不实行夏令时）', arrTz:'UTC+10', note:'红眼航班，跨 10/3 抵达'},
+  {no:'CZ344', air:'南方航空', leg:'墨尔本 → 广州',
+   from:'墨尔本 MEL T2', to:'广州白云 T2', depISO:'2026-10-05T22:10:00+11:00', arrISO:'2026-10-06T05:00:00+08:00', depTz:'UTC+11（夏令时 AEDT）', arrTz:'UTC+8', note:''},
+  {no:'CZ3533', air:'南方航空', leg:'广州 → 上海',
+   from:'广州白云 T2', to:'上海虹桥 T2', depISO:'2026-10-06T07:00:00+08:00', arrISO:'2026-10-06T09:20:00+08:00', depTz:'UTC+8', arrTz:'UTC+8', note:'⚠ 广州国际转国内仅 2 小时'}
+];
+
+/* ---- 住宿（每晚住哪）---- */
+const HOTELS = [
+  {city:'河内', nights:'9/25（1 晚）', name:'内排机场附近酒店', addr:'待补（建议机场周边 5–10 分钟车程）', tel:'待补', status:'待确认'},
+  {city:'墨尔本', nights:'9/26（1 晚）', name:'机场附近或市区酒店', addr:'待补', tel:'待补', status:'待确认'},
+  {city:'悉尼', nights:'9/27–9/29（2 晚）', name:'悉尼海德公园喜来登大酒店 Sheraton Grand Sydney Hyde Park', addr:'悉尼 CBD（Elizabeth St 一带）', tel:'待补', status:'已订'},
+  {city:'凯恩斯', nights:'9/29–10/2（3 晚）', name:'克里斯托布鲁克·贝利酒店 Crystalbrook Bailey', addr:'凯恩斯市中心 CBD', tel:'待补', status:'已订'},
+  {city:'墨尔本', nights:'10/2–10/5（3 晚）', name:'墨尔本里士满源宿酒店 Element Melbourne Richmond', addr:'22 Russell St, Richmond VIC 3121', tel:'待补', status:'已订'}
+];
+
+/* ---- 已订 / 待订的门票与一日游 ---- */
+const TOURS = [
+  {name:'丹翠雨林 + 苦难角深度一日游', date:'9/30 周三', time:'07:30 酒店接送 · 07:40 上车', addr:'集合点：NOVOTEL OASIS – 122 LAKE STREET（就近约 500m 集合）', status:'待确认', book:'需提前订', note:'含 Mossman Gorge、Daintree River 鳄鱼河游船、Cape Tribulation、Thornton Beach 午餐'},
+  {name:'银梭号大堡礁一日游 Quicksilver', date:'10/1 周四', time:'07:30–08:30 市区 & 北部沙滩接 · 10:00 船出发 · 约 18:00 送回', addr:'道格拉斯港 Port Douglas 出发 → 阿金考特礁 Agincourt Reef', status:'已订', book:'含接送套餐', note:'优先选择可免费改期 / 退款（风大常取消）'},
+  {name:'普芬比利蒸汽小火车半日游', date:'10/3 周六', time:'14:30–15:00 市区酒店接 · 16:40–17:40 乘坐 · 19:00 返回市区', addr:'丹顿农山脉 Dandenong Ranges', status:'待确认', book:'⚠ 极易售罄', note:'周六 + 维州春假，务必尽早锁位'},
+  {name:'大洋路反向一日游（精品小团）', date:'10/4 周日', time:'全天（早出晚归）', addr:'集合点：Element Melbourne Richmond 22 Russell St（打车约 15 分钟）', status:'待确认', book:'需提前订', note:'Geelong → Apollo Bay → 十二门徒岩 → 洛克阿德峡谷'}
+];
+
+/* ---- 逐日行程 ---- */
+const DAYS = [
+{
+  n:1, date:'9/25', dow:'周五', color:'#e0a020', title:'上海 → 河内', stay:'河内机场附近酒店（待补名称）',
+  risk:null,
+  items:[
+    {t:'11:30', title:'从市区出发 → 上海浦东机场 T1', desc:'国际航班留足 3 小时缓冲，建议 12:50 前到达', map:'上海浦东国际机场T1'},
+    {t:'15:50', title:'VN533 起飞（UTC+8）', flight:true, map:'上海浦东国际机场T1'},
+    {t:'18:25', title:'抵达河内内排 T2（UTC+7）', flight:true, desc:'比北京时间慢 1 小时', map:'Noi Bai International Airport Terminal 2'},
+    {t:'19:30', title:'前往机场附近酒店', desc:'一碗 Pho + 早休息；今晚任务不是玩河内，是恢复体力', map:'Noi Bai International Airport'}
+  ]
+},
+{
+  n:2, date:'9/26', dow:'周六', color:'#2a9d8f', title:'河内 → 墨尔本（长途飞行日）', stay:'墨尔本（机场附近或市区）待补名称',
+  risk:'这是全程最耗的一段：9h30m 飞行。落地 22:15 后过海关 + 检疫，到酒店大概率已近午夜。',
+  items:[
+    {t:'06:30', title:'出发前往机场', desc:'建议 06:45–07:00 到 T2', map:'Noi Bai International Airport Terminal 2'},
+    {t:'09:45', title:'VN779 起飞（UTC+7）', flight:true},
+    {t:'22:15', title:'抵达墨尔本 MEL T2（UTC+10）', flight:true, desc:'澳洲入境检疫极严，请如实申报食品 / 药品 / 木制品 / 泥鞋'},
+    {t:'23:30', title:'入住酒店', desc:'别排任何活动，直接睡', map:'Melbourne Airport'}
+  ]
+},
+{
+  n:3, date:'9/27', dow:'周日', color:'#e8734a', title:'墨尔本 → 悉尼｜CBD 核心 + The Rocks 周日市集', stay:'Sheraton Grand Sydney Hyde Park',
+  risk:'前一天 22:15 才落地，今早 08:15 又飞 —— 睡眠债最大。<b>注意：</b>捷星 JQ504 从 <b>MEL T4</b> 出发，与昨天国际到达的 T2 不是同一航站楼，需坐机场摆渡。',
+  items:[
+    {t:'05:45', title:'出发前往 MEL T4', desc:'住机场附近 05:45；住市区则 05:30 出发', map:'Melbourne Airport T4'},
+    {t:'06:15', title:'到达 T4 办值机', desc:'起飞前 2 小时；捷星值机约起飞前 60 分钟关闭'},
+    {t:'08:15', title:'JQ504 起飞（UTC+10）', flight:true},
+    {t:'09:45', title:'抵达悉尼 SYD T2', flight:true, map:'Sydney Kingsford Smith Airport T2'},
+    {t:'11:00', title:'酒店寄存行李', map:'Sheraton Grand Sydney Hyde Park'},
+    {t:'11:30', title:'CBD 核心漫步', desc:'海德公园 → 圣玛丽大教堂 → 皇家植物园 + 麦考利夫人座椅 → 歌剧院 → 环形码头（全程步行约 2h）', map:'Hyde Park Sydney'},
+    {t:'13:30', title:'岩石区午餐', map:'The Rocks Sydney'},
+    {t:'14:30', title:'QVB / Strand Arcade 溜缝购物', desc:'非强需，有空就逛', map:'Queen Victoria Building Sydney'},
+    {t:'15:30', title:'The Rocks 周日市集', desc:'10–17 点，<b>仅周日开放</b>，错过就要等下个周日', map:'The Rocks Market Sydney'},
+    {t:'18:00', title:'岩石区晚餐 + 歌剧院海港夜景', desc:'第一天别硬撑，22:30 前睡', map:'Sydney Opera House'}
+  ]
+},
+{
+  n:4, date:'9/28', dow:'周一', color:'#2b6777', title:'悉尼｜邦迪海滩 + 塔龙加动物园', stay:'Sheraton Grand Sydney Hyde Park',
+  risk:'正值<b>新州春假（9/28–10/9）</b>，塔龙加动物园人流大，门票建议提前在线买。动物园 <b>16:00 停止入园、17:00 闭园</b>，14:00 的渡轮到园约只剩 3 小时。',
+  items:[
+    {t:'09:00', title:'出发前往邦迪', map:'Bondi Beach'},
+    {t:'09:30', title:'333 路 → 邦迪海滩', desc:'约 30 分钟车程', map:'Bondi Beach'},
+    {t:'10:00', title:'邦迪 + 海岸步道', desc:'Bondi–Tamarama 段走 2–3km 即可，不必走满 6km'},
+    {t:'12:30', title:'邦迪咖啡午餐'},
+    {t:'13:30', title:'返回环形码头', desc:'公交 / 轻轨约 50 分钟', map:'Circular Quay Sydney'},
+    {t:'14:00', title:'F2 渡轮 → 塔龙加动物园', flight:false, desc:'渡轮约 12 分钟，顺路看港景', map:'Taronga Zoo Sydney'},
+    {t:'14:30', title:'塔龙加动物园', desc:'缆车 + 考拉 / 袋鼠，3 小时重点游览', book:true, map:'Taronga Zoo Sydney'},
+    {t:'17:00', title:'渡轮返回', desc:'注意末班渡轮时间'},
+    {t:'18:30', title:'CBD 晚餐 + 海港夜景', map:'Sydney Opera House'}
+  ]
+},
+{
+  n:5, date:'9/29', dow:'周二', color:'#c98b3a', title:'悉尼大学 + 鱼市场 → 飞凯恩斯', stay:'Crystalbrook Bailey, Cairns',
+  risk:'今天要把"退房 + 游玩 + 赶机"三件套塞进 6 小时。<b>先学校、后午餐</b>的走法最顺：学校早上人少光好，鱼市场 11:30 进场避开 weekday 高峰。',
+  items:[
+    {t:'08:00', title:'退房 + 行李寄存前台'},
+    {t:'08:15', title:'前往悉尼大学', desc:'打车 / 公交 422·440', map:'The University of Sydney Quadrangle'},
+    {t:'08:40', title:'悉尼大学 Quadrangle', desc:'哈利波特楼 + 主楼，早上人少、光好', map:'The University of Sydney Quadrangle'},
+    {t:'11:00', title:'转场至鱼市场', desc:'步行至 Glebe L1 轻轨站 / bus 431·433', map:'Sydney Fish Market Blackwattle Bay'},
+    {t:'11:30', title:'鱼市场午餐', desc:'Blackwattle Bay 新址；周二几乎不用排队'},
+    {t:'13:00', title:'L1 轻轨回 CBD', map:'Town Hall Station Sydney'},
+    {t:'13:30', title:'回酒店取行李'},
+    {t:'14:00', title:'步行至 Town Hall 站'},
+    {t:'14:30', title:'T8 机场线 → SYD T3', flight:true, desc:'车程约 13 分钟', map:'Sydney Airport T3'},
+    {t:'15:00', title:'到达 SYD T3', desc:'起飞前 3h20m 到达，缓冲充足', flight:true},
+    {t:'18:20', title:'QF1878 起飞（UTC+10）', flight:true},
+    {t:'21:30', title:'抵达凯恩斯 CNS T2', flight:true, map:'Cairns Airport'},
+    {t:'22:30', title:'入住 Crystalbrook Bailey', desc:'凯恩斯比悉尼晚——昆州不实行夏令时', map:'Crystalbrook Bailey Cairns'}
+  ]
+},
+{
+  n:6, date:'9/30', dow:'周三', color:'#2d6a4f', title:'凯恩斯｜丹翠雨林 + 苦难角一日游', stay:'Crystalbrook Bailey, Cairns',
+  risk:'全天户外、车程长，是<b>体力消耗最大的一天</b>。前一晚务必睡够；10 月水母季刚启动，涉水活动听从向导安排。',
+  items:[
+    {t:'07:30', title:'酒店接送', desc:'酒店不能长时间停车，需就近约 500m 集合', book:true},
+    {t:'07:40', title:'NOVOTEL OASIS 上车', desc:'122 LAKE STREET（以确认单为准）', book:true, map:'Novotel Cairns Oasis Resort 122 Lake Street'},
+    {t:'上午', title:'茅斯曼峡谷 Mossman Gorge', desc:'雨林步道', map:'Mossman Gorge'},
+    {t:'中午', title:'丹翠河 Daintree River 游船', desc:'约 1 小时，红树林 + 河口鳄鱼', map:'Daintree River Cruise Centre'},
+    {t:'下午', title:'苦难角 Cape Tribulation', desc:'穿越雨林，Thornton Beach 午餐', map:'Cape Tribulation'},
+    {t:'下午', title:'丹翠冰淇淋公司 + 亚历山大大观景台', desc:'自费项', map:'Daintree Ice Cream Company'},
+    {t:'晚上', title:'凯恩斯滨海大道散步 + 海边餐厅晚餐', map:'Cairns Esplanade'}
+  ]
+},
+{
+  n:7, date:'10/1', dow:'周四', color:'#0077b6', title:'凯恩斯｜银梭号大堡礁一日游', stay:'Crystalbrook Bailey, Cairns',
+  risk:'外堡礁<b>因风大取消很常见</b>。订的时候务必选"可免费改期 / 退款"。若取消，备选：改到 10/2 上午；或市区平替 Cairns Aquarium / 凯恩斯夜市。',
+  items:[
+    {t:'07:30', title:'市区 & 北部沙滩酒店接', desc:'07:30–08:30 接驳；道格拉斯港客人 09:00–09:30 接', book:true},
+    {t:'09:15', title:'道格拉斯港办理 check-in', map:'Port Douglas'},
+    {t:'10:00', title:'银梭号双体船出发', desc:'船上播放大堡礁生态影片 + 浮潜演示'},
+    {t:'11:30', title:'抵达阿金考特礁', desc:'自由活动（浮潜 / 半潜艇 / 海底观察站）', map:'Agincourt Reef'},
+    {t:'12:00', title:'自助午餐'},
+    {t:'15:00', title:'离开阿金考特礁'},
+    {t:'16:30', title:'返回道格拉斯港'},
+    {t:'18:00', title:'送回凯恩斯各区域酒店'},
+    {t:'晚上', title:'酒店附近简餐 + 早休息', desc:'早起晚归的一天'}
+  ]
+},
+{
+  n:8, date:'10/2', dow:'周五', color:'#9c6644', title:'凯恩斯休闲 → 红眼飞墨尔本', stay:'Element Melbourne Richmond（凌晨入住）',
+  risk:'今晚 21:00 起飞、次日 00:30 落地，<b>入住会在凌晨 1 点后</b>，务必提前告知酒店延迟入住（late check-in）。',
+  items:[
+    {t:'上午', title:'凯恩斯滨海大道 Esplanade Lagoon', desc:'免费泻湖泳池 + 咖啡馆', map:'Cairns Esplanade Lagoon'},
+    {t:'中午', title:'购买伴手礼', desc:'注意：热带水果（芒果等）不能带上国内段航班，当地解决'},
+    {t:'下午', title:'酒店休息 + 寄存行李'},
+    {t:'18:30', title:'出发前往凯恩斯机场 T2', map:'Cairns Airport T2'},
+    {t:'19:00', title:'到达机场（起飞前 2 小时）'},
+    {t:'21:00', title:'VA1298 起飞（UTC+10，凯恩斯无夏令时）', flight:true},
+    {t:'00:30', title:'10/3 抵达墨尔本 MEL T3', flight:true, map:'Melbourne Airport T3'}
+  ]
+},
+{
+  n:9, date:'10/3', dow:'周六', color:'#6a4c93', title:'墨尔本｜休息 + 普芬比利蒸汽小火车', stay:'Element Melbourne Richmond',
+  risk:'凌晨才到，上午务必留白。<b>普芬比利在周六 + 春假档极易售罄</b>，务必确认已出票再出行；若未订上，下午改市区（NGV / ACMI / 州立图书馆）。',
+  items:[
+    {t:'上午', title:'休息调整', desc:'补觉优先，别硬排行程'},
+    {t:'可选', title:'Queen Victoria Market', desc:'周六最热闹（周一休市）', map:'Queen Victoria Market Melbourne'},
+    {t:'可选', title:'Hosier Lane / ACMI / NGV / 州立图书馆', desc:'均在 CBD，免费', map:'Hosier Lane Melbourne'},
+    {t:'14:30', title:'普芬比利蒸汽小火车 — 市区酒店接', desc:'14:30–15:00 接驳，约 5 小时含接送', book:true, map:'Puffing Billy Railway Belgrave'},
+    {t:'16:40', title:'乘坐百年蒸汽小火车', desc:'穿梭丹顿农山脉（注意保暖）'},
+    {t:'19:00', title:'返回市区'},
+    {t:'晚上', title:'Richmond 餐厅用餐', map:'Richmond Melbourne'}
+  ]
+},
+{
+  n:10, date:'10/4', dow:'周日', color:'#198754', title:'墨尔本｜大洋路反向一日游', stay:'Element Melbourne Richmond',
+  risk:'⚠ <b>今天 02:00 起进入夏令时（AEDT, UTC+11）</b>，凭空少 1 小时。<b>10/4 起悉尼 / 墨尔本比北京快 3 小时</b>（此前为 2 小时）。手机会自动跳，手表 / 相机 / 计时器不会。',
+  items:[
+    {t:'早上', title:'打车至集合点', desc:'Element Melbourne Richmond, 22 Russell St（约 15 分钟 / 6.3km）', book:true, map:'Element Melbourne Richmond 22 Russell St'},
+    {t:'全天', title:'大洋路一日游（精品小团）', desc:'吉朗 Geelong → 阿波罗湾 Apollo Bay → 十二门徒岩 Twelve Apostles → 洛克阿德峡谷 Loch Ard Gorge', book:true, map:'Twelve Apostles'},
+    {t:'傍晚', title:'洛克阿德峡谷看日落', desc:'大洋路当天光线最好的时候', map:'Loch Ard Gorge'},
+    {t:'晚上', title:'返回墨尔本', desc:'风大 + "southerly buster" 可能 20 分钟降 10°C，防风防水外套必带'}
+  ]
+},
+{
+  n:11, date:'10/5', dow:'周一', color:'#b03a3a', title:'墨尔本市内 → 飞广州', stay:'机上过夜',
+  risk:'今天已是夏令时，22:10 起飞按 <b>UTC+11</b>。<b>Queen Victoria Market 周一休市</b>，别白跑一趟。',
+  items:[
+    {t:'上午', title:'Degraves 巷咖啡', desc:'QVM 休市，改走咖啡 + 巷弄路线', map:'Degraves Street Melbourne'},
+    {t:'中午', title:'NGV / 皇家植物园', desc:'免费入内', map:'National Gallery of Victoria'},
+    {t:'下午', title:'St Kilda 海滩 + 栈桥', desc:'黄昏可能有小企鹅', map:'St Kilda Pier Melbourne'},
+    {t:'下午', title:'Brighton 彩色更衣小屋', map:'Brighton Beach Boxes'},
+    {t:'下午', title:'返回酒店取行李'},
+    {t:'18:30', title:'前往墨尔本 MEL T2', desc:'国际航班留 3 小时：19:10 前到达', map:'Melbourne Airport T2'},
+    {t:'22:10', title:'CZ344 起飞（UTC+11）', flight:true}
+  ]
+},
+{
+  n:12, date:'10/6', dow:'周二', color:'#5f6368', title:'广州中转 → 上海｜行程结束', stay:'—',
+  risk:'广州 05:00 落地、07:00 起飞，<b>国际转国内只有 2 小时</b>。请务必与南航确认<b>行李是否真正直挂上海</b> —— 若需在广州自取重托，2 小时相当紧。',
+  items:[
+    {t:'05:00', title:'抵达广州白云 T2', flight:true, map:'Guangzhou Baiyun International Airport T2'},
+    {t:'05:30', title:'入境 + 提取行李 / 或直挂中转', desc:'中国境内国际转国内，通常需入境过海关'},
+    {t:'07:00', title:'CZ3533 起飞（UTC+8）', flight:true},
+    {t:'09:20', title:'抵达上海虹桥 T2', flight:true, map:'Shanghai Hongqiao Airport T2'},
+    {t:'—', title:'行程结束'}
+  ]
+}
+];
+
+/* ---- 待办（纯列表，不可勾选）---- */
+const TODO = [
+  {t:'预订 / 复核银梭号大堡礁（10/1）—— 必须选可免费改期或退款的，含接送套餐', hot:true},
+  {t:'预订大洋路精品小团（10/4）—— 夏令时首日 + 长周末，车位紧张', hot:true},
+  {t:'预订普芬比利蒸汽小火车（10/3）—— 周六 + 春假，售罄风险最高的一项', hot:true},
+  {t:'预订丹翠雨林一日游（9/30）', hot:true},
+  {t:'购买旅游保险：医疗 ≥ 30 万人民币 + 紧急救援送返，并确认承保浮潜', hot:true},
+  {t:'向南方航空确认：广州中转行李是否直挂上海，还是需自提重托', hot:true},
+  {t:'在线值机 JQ504 / QF1878 / VA1298 三段澳洲国内航班'},
+  {t:'复核行李额：重点是捷星 JQ504 与维珍 VA1298（国内 App 买的额度建议官网再核一次）'},
+  {t:'确认 9/25 河内机场附近酒店名称与地址'},
+  {t:'确认 9/26 墨尔本住宿（机场附近 or 市区），决定 9/27 早上 05:30 还是 05:45 出发'},
+  {t:'补 5 家酒店的英文名称、完整地址与电话'},
+  {t:'兑换约 400 澳元现金（小面额 5/10/20/50 为主）'},
+  {t:'信用卡开通境外交易、告知银行行程日期，避免锁卡'},
+  {t:'准备 Type I 转换头 + 一个中国排插（2 人设备多，一个头搞定全部）'},
+  {t:'准备 reef-safe 防晒霜 SPF50+、防水手机袋 / dry bag（10/1 浮潜用）'},
+  {t:'常用药带足 + 英文说明或处方；入境如实申报'},
+  {t:'手机存：澳洲紧急 000、保单 24h 救援热线、中国驻悉尼 / 墨尔本总领馆电话'},
+  {t:'把本页加入手机主屏幕，离线也能打开'}
+];
+
+/* ---- 实用贴士 ---- */
+const TIPS = [
+  {h:'时差与夏令时（最易踩坑）', p:[
+    '凯恩斯（昆州）全年 UTC+10，不实行夏令时 —— 始终比北京快 2 小时。',
+    '悉尼 / 墨尔本在 <b>10/4（周日）02:00</b> 起进入夏令时 AEDT = UTC+11 —— 此后比北京快 3 小时。',
+    '10/4 当天少睡 1 小时；手表、相机、计时器不会自动跳，需手动调。'
+  ]},
+  {h:'入境澳洲：生物安全极严', p:[
+    '所有食品、药品、保健品、木制品、带泥的户外鞋都必须申报。',
+    '入境卡如实填写，宁可多申报也不要瞒报。',
+    '凯恩斯热带水果（芒果等）既不能带上国内段航班，也不能带出澳洲。'
+  ]},
+  {h:'现金与银行卡', p:[
+    '主用 Visa / Mastercard，澳洲几乎处处能刷，现金只是补充。',
+    '两人建议带约 400 澳元现金（小面额为主），远低于 1 万澳元申报线。',
+    '应急带一张免境外取现手续费的银联借记卡。'
+  ]},
+  {h:'电源', p:[
+    '澳洲 Type I 三扁插，电压 230V（兼容中国 220V，不用变压器）。',
+    '建议组合：1 个 Type I 转换头 + 1 个中国排插，只占墙上 1 个口。'
+  ]},
+  {h:'紧急情况', p:[
+    '澳洲报警 / 急救 / 消防统一 000。',
+    '手机存好保单 24h 救援热线与中国驻悉尼 / 墨尔本总领馆电话。',
+    '澳洲看病不享受 Medicare：急诊 AUD 519 起、住院一晚 AUD 3,118 起，务必先买保险。'
+  ]},
+  {h:'天气与备选方案', p:[
+    '大堡礁因风大取消很常见 → 改期优先，或改市区平替（Cairns Aquarium、凯恩斯夜市）。',
+    '大洋路遇海风大雾 → 可改墨尔本市区（NGV、美术馆、企鹅岛另约）。',
+    '墨尔本一天四季，10 月多阵雨，轻便冲锋衣随包。'
+  ]},
+  {h:'穿搭原则', p:[
+    '核心不是穿厚，是"分层 + 防晒"：内层 T 恤 + 中层抓绒 + 外层防风防水。',
+    '澳洲臭氧层薄，UV 指数普遍 8 以上，海风会让你"感觉不晒"其实在烤。',
+    '悉尼 20–22°C / 凯恩斯 27–29°C / 墨尔本约 20°C 但风大体感冷。'
+  ]},
+  {h:'小费与日常', p:[
+    '澳洲不强制小费，餐厅或 café 留点零钱即可，不必按 15–20%。',
+    '银联在澳洲不普及，别指望。',
+    '越南（9/25–9/26）用越南盾，到当地再换，国内不必提前换。'
+  ]}
+];
+
+/* =======================================================================
+   渲染逻辑
+   ======================================================================= */
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+/* Google 地图导航链接：单点点→直接导航；多点→origin/waypoints/destination */
+const MAPQ = q => encodeURIComponent(q);
+function navURL(list){
+  if(!list || !list.length) return null;
+  const q = list.map(MAPQ);
+  if(q.length === 1) return 'https://www.google.com/maps/dir/?api=1&destination=' + q[0] + '&travelmode=transit';
+  return 'https://www.google.com/maps/dir/?api=1&origin=' + q[0] +
+         '&waypoints=' + q.slice(1,-1).join('%7C') +
+         '&destination=' + q[q.length-1] + '&travelmode=transit';
+}
+const isoTZ = iso => iso.slice(-6);
+
+/* ---------- 此刻关注：倒计时 ---------- */
+/* 额外锚点：一日游 / 接驳出发时刻（同样带固定 UTC 偏移） */
+const EXTRA_ANCHORS = [
+  {iso:'2026-09-30T07:30:00+10:00', name:'丹翠雨林一日游 · 酒店接送', where:'凯恩斯 Crystalbrook Bailey', tz:'UTC+10'},
+  {iso:'2026-10-01T07:30:00+10:00', name:'银梭号大堡礁 · 开始接驳', where:'凯恩斯市区 & 北部沙滩', tz:'UTC+10'},
+  {iso:'2026-10-03T14:30:00+10:00', name:'普芬比利蒸汽小火车 · 酒店接', where:'墨尔本 Element Richmond', tz:'UTC+10'},
+  {iso:'2026-10-04T08:00:00+11:00', name:'大洋路一日游 · 集合', where:'22 Russell St, Richmond', tz:'UTC+11（夏令时）'}
+];
+
+function anchors(){
+  const a = [];
+  FLIGHTS.forEach(f => {
+    a.push({iso:f.depISO, name:f.no + ' ' + f.leg + ' 起飞', where:f.from, tz:f.depTz});
+  });
+  EXTRA_ANCHORS.forEach(e => a.push(e));
+  return a.sort((x,y) => new Date(x.iso) - new Date(y.iso));
+}
+const ANCHORS = anchors();
+
+function updNow(){
+  const now = Date.now();
+  let cur = null;
+  for(const e of ANCHORS){ if(new Date(e.iso).getTime() > now){ cur = e; break; } }
+  const box = $('#nowCd'), evt = $('#nowEvt'), when = $('#nowWhen'), hint = $('#nowHint');
+  if(!cur){
+    evt.textContent = '行程已结束';
+    when.textContent = '祝一路平安 🧳';
+    box.style.display = 'none'; hint.textContent = '本页为终稿状态，如需改期请重排整个行程。';
+    return;
+  }
+  box.style.display = 'flex';
+  const target = new Date(cur.iso).getTime();
+  let diff = Math.max(0, target - now);
+  const d = Math.floor(diff / 86400000); diff -= d*86400000;
+  const h = Math.floor(diff / 3600000);  diff -= h*3600000;
+  const m = Math.floor(diff / 60000);    diff -= m*60000;
+  const s = Math.floor(diff / 1000);
+  evt.textContent = '下一个：' + cur.name;
+  const localAbs = new Date(cur.iso);
+  when.innerHTML = esc(cur.where || '') + ' · ' +
+    esc(localAbs.toLocaleString('zh-CN',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'})) +
+    ' <span style="opacity:.75">（' + esc(cur.tz) + '）</span>';
+  box.innerHTML = [['天',d],['时',h],['分',m],['秒',s]]
+    .map(([t,v]) => '<div class="u"><div class="n">' + String(v).padStart(2,'0') + '</div><div class="t">' + t + '</div></div>').join('');
+  const myTz = -new Date().getTimezoneOffset();
+  const sign = myTz >= 0 ? '+' : '-';
+  const abs = Math.abs(myTz);
+  hint.innerHTML = '你当前时区：UTC' + sign + String(Math.floor(abs/60)).padStart(2,'0') + ':' + String(abs%60).padStart(2,'0') +
+    '　·　事件时间已按出发地时区锁定，跨时区打开不会算错';
+}
+
+/* ---------- 总览地图（手绘感 SVG） ---------- */
+function renderOverview(){
+  const nodes = {
+    syd:{x:566,y:292,label:'悉尼'}, mel:{x:512,y:352,label:'墨尔本'}, cns:{x:452,y:112,label:'凯恩斯'},
+    han:{x:96,y:96,label:'河内'}, sha:{x:60,y:196,label:'上海'}, can:{x:120,y:430,label:'广州'}
+  };
+  const dayColor = n => (DAYS.find(d => d.n === n) || {color:'#888'}).color;
+  const rough = '<filter id="rgh"><feTurbulence type="fractalNoise" baseFrequency="0.022" numOctaves="3" seed="9" result="n"/>' +
+                '<feDisplacementMap in="SourceGraphic" in2="n" scale="4.5" xChannelSelector="R" yChannelSelector="G"/></filter>';
+  const au = 'M120,250 Q175,190 240,150 Q300,132 330,136 Q356,150 392,176 Q428,140 456,102 ' +
+             'Q500,150 522,196 Q546,236 566,284 Q548,332 512,354 Q456,342 396,346 Q300,352 214,340 Q140,312 116,274 Q112,258 120,250 Z';
+  const tz = 'M560,392 q22,-6 34,8 q10,12 -4,20 q-14,8 -28,2 q-12,-6 -6,-16 z';
+  const line = (a,b,c,w,dash) => '<line x1="'+a.x+'" y1="'+a.y+'" x2="'+b.x+'" y2="'+b.y+'" stroke="'+c+'" stroke-width="'+(w||3.4)+
+    '" stroke-linecap="round" stroke-dasharray="'+(dash||'0')+'"/>';
+  const dot = (p,c,r) => '<circle cx="'+p.x+'" cy="'+p.y+'" r="'+(r||6)+'" fill="'+c+'" stroke="#fff" stroke-width="1.8"/>';
+  const lab = (p,t,anchor) => '<text x="'+(anchor==='end'? p.x-11 : p.x+11)+'" y="'+(p.y+4)+'" text-anchor="'+(anchor||'start')+
+    '" font-size="12.5" font-weight="700" fill="currentColor" opacity=".85">'+t+'</text>';
+  const pin = (p,n,c) => '<g><path d="M'+(p.x+16)+','+(p.y-22)+' a9,9 0 1,1 -0.1,0 z" fill="'+c+'" stroke="#fff" stroke-width="1.6"/>' +
+    '<text x="'+(p.x+16)+'" y="'+(p.y-19)+'" text-anchor="middle" font-size="10" font-weight="800" fill="#fff">'+n+'</text></g>';
+
+  const svg =
+  '<svg viewBox="0 0 680 470" role="img" aria-label="行程总览地图" font-family="PingFang SC,Microsoft YaHei,sans-serif">' +
+    '<defs>' + rough + '</defs>' +
+    '<g filter="url(#rgh)"><path d="'+au+'" fill="var(--mapland)" stroke="#b99" stroke-width="2"/><path d="'+tz+'" fill="var(--mapland)" stroke="#b99" stroke-width="2"/></g>' +
+    // 国际段（虚线）
+    '<g opacity=".9">' +
+      line(nodes.sha, nodes.han, dayColor(1), 2.6, '7 5') +
+      line(nodes.han, nodes.mel, dayColor(2), 2.6, '7 5') +
+      line(nodes.mel, nodes.can, dayColor(11), 2.6, '7 5') +
+      line(nodes.can, nodes.sha, dayColor(12), 2.6, '7 5') +
+    '</g>' +
+    // 澳洲境内段（实线，按天配色）
+    line(nodes.mel, nodes.syd, dayColor(3), 3.6) +
+    line(nodes.syd, nodes.cns, dayColor(5), 3.6) +
+    line(nodes.cns, nodes.mel, dayColor(8), 3.6) +
+    // 城市点
+    dot(nodes.syd,'#e8734a',6.5) + lab(nodes.syd,'悉尼','start') +
+    dot(nodes.mel,'#198754',7)   + lab(nodes.mel,'墨尔本','end') +
+    dot(nodes.cns,'#0077b6',6.5) + lab(nodes.cns,'凯恩斯','start') +
+    dot(nodes.han,'#e0a020',5)   + lab(nodes.han,'河内','start') +
+    dot(nodes.sha,'#b03a3a',5)   + lab(nodes.sha,'上海','start') +
+    dot(nodes.can,'#5f6368',5)   + lab(nodes.can,'广州','start') +
+    // 住几晚标记
+    pin(nodes.han,1,'#e0a020') + pin(nodes.mel,1,'#9c6644') +
+    pin(nodes.syd,2,'#e8734a') + pin(nodes.cns,3,'#0077b6') +
+    '<path d="M'+(nodes.mel.x+16)+',318 a9,9 0 1,1 -0.1,0 z" fill="#198754" stroke="#fff" stroke-width="1.6"/>' +
+    '<text x="'+(nodes.mel.x+16)+'" y="321" text-anchor="middle" font-size="10" font-weight="800" fill="#fff">3</text>' +
+    '<text x="340" y="440" text-anchor="middle" font-size="12" fill="currentColor" opacity=".6">虚线 = 国际航班　实线 = 澳洲境内　徽章数字 = 住几晚</text>' +
+  '</svg>';
+  $('#ovMap').innerHTML = svg;
+  $('#ovLegend').innerHTML = DAYS.map(d =>
+    '<span><i style="background:' + d.color + '"></i>D' + d.n + ' ' + esc(d.date) + ' ' + esc(d.title) + '</span>').join('');
+}
+
+/* ---------- 当日路线小图 ---------- */
+function daySVG(day){
+  const pts = day.items.filter(i => i.map);
+  const n = Math.max(pts.length, 2);
+  const W = 680, H = 40 + n * 46;
+  let g = '';
+  const X = i => 54 + (W - 150) * (n === 1 ? 0 : i / (n - 1));
+  const Y = i => 42 + i * 46;
+  for(let i = 0; i < n - 1; i++){
+    g += '<path d="M' + X(i) + ',' + Y(i) + ' C' + (X(i) + 40) + ',' + (Y(i) + 22) + ' ' +
+         (X(i+1) - 40) + ',' + (Y(i+1) - 22) + ' ' + X(i+1) + ',' + Y(i+1) +
+         '" fill="none" stroke="' + day.color + '" stroke-width="2.6" stroke-dasharray="7 5" stroke-linecap="round" opacity=".8"/>';
+  }
+  pts.forEach((p, i) => {
+    g += '<circle cx="' + X(i) + '" cy="' + Y(i) + '" r="8" fill="' + day.color + '" stroke="#fff" stroke-width="2"/>' +
+         '<text x="' + X(i) + '" y="' + (Y(i) + 4) + '" text-anchor="middle" font-size="10" font-weight="800" fill="#fff">' + (i+1) + '</text>' +
+         '<text x="' + (X(i) + 15) + '" y="' + (Y(i) + 5) + '" font-size="12.5" font-weight="600" fill="currentColor" opacity=".9">' +
+           esc((p.title || '').slice(0, 22)) + '</text>';
+  });
+  return '<svg viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="当日路线" font-family="PingFang SC,Microsoft YaHei,sans-serif">' + g + '</svg>';
+}
+
+/* ---------- 预订表 ---------- */
+function renderBookings(){
+  const flightRows = FLIGHTS.map(f => {
+    const depD = new Date(f.depISO), arrD = new Date(f.arrISO);
+    const fmt = (d, tz) => d.toLocaleString('zh-CN',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit',timeZone:'UTC',hour12:false})
+      .replace(/\//g,'/') + ' <span class="na">' + tz + '</span>';
+    return '<tr>' +
+      '<td class="k"><span class="tag">' + esc(f.no) + '</span><br><span class="na">' + esc(f.air) + '</span></td>' +
+      '<td>' + esc(f.from) + ' → ' + esc(f.to) +
+        '<br><b>起飞 ' + esc(f.depISO.slice(5,10).replace('-','/')) + ' ' + esc(f.depISO.slice(11,16)) + '</b> <span class="na">' + esc(f.depTz) + '</span>' +
+        '<br><b>抵达 ' + esc(f.arrISO.slice(5,10).replace('-','/')) + ' ' + esc(f.arrISO.slice(11,16)) + '</b> <span class="na">' + esc(f.arrTz) + '</span>' +
+        (f.note ? '<br><span class="na">' + esc(f.note) + '</span>' : '') +
+        '<br><a class="maplink" target="_blank" rel="noopener" href="' + navURL([f.from]) + '">📍 出发机场导航</a>' +
+        '　<a class="maplink" target="_blank" rel="noopener" href="' + navURL([f.to]) + '">📍 到达机场导航</a>' +
+      '</td></tr>';
+  }).join('');
+
+  const hotelRows = HOTELS.map(h =>
+    '<tr><td class="k">' + esc(h.city) + '<br><span class="na">' + esc(h.nights) + '</span></td>' +
+    '<td><b>' + esc(h.name) + '</b>' +
+      (h.status === '已订' ? ' <span class="tag ok">已订</span>' : ' <span class="tag warn">待确认</span>') +
+      '<br>' + esc(h.addr) + '<br>电话：' + esc(h.tel) +
+      '<br><a class="maplink" target="_blank" rel="noopener" href="' + navURL([h.name + ' ' + h.city]) + '">📍 导航到这里</a>' +
+    '</td></tr>').join('');
+
+  const tourRows = TOURS.map(t =>
+    '<tr><td class="k">' + esc(t.date) + '</td>' +
+    '<td><b>' + esc(t.name) + '</b>' +
+      (t.status === '已订' ? ' <span class="tag ok">已订</span>' : ' <span class="tag warn">待确认</span>') +
+      ' <span class="tag">' + esc(t.book) + '</span>' +
+      '<br>' + esc(t.time) + '<br>' + esc(t.addr) +
+      '<br><span class="na">' + esc(t.note) + '</span>' +
+      '<br><a class="maplink" target="_blank" rel="noopener" href="' + navURL([t.addr.split(/[（(]/)[0].slice(0,60)]) + '">📍 集合点导航</a>' +
+    '</td></tr>').join('');
+
+  $('#bkBox').innerHTML =
+    '<div class="bkgroup"><div class="bktitle">✈ 机票（7 段，已出票 — 全行程时间锚点）</div>' +
+      '<table class="bk"><tr><th style="width:78px">航班</th><th>航段与时间</th></tr>' + flightRows + '</table></div>' +
+    '<div class="bkgroup"><div class="bktitle">🏨 住宿（每晚住哪）</div>' +
+      '<table class="bk"><tr><th style="width:88px">城市 / 晚数</th><th>酒店与地址</th></tr>' + hotelRows + '</table></div>' +
+    '<div class="bkgroup"><div class="bktitle">🎟 门票与一日游</div>' +
+      '<table class="bk"><tr><th style="width:70px">日期</th><th>项目与集合信息</th></tr>' + tourRows + '</table></div>' +
+    '<div class="bkgroup"><div class="bktitle">🚗 租车</div>' +
+      '<table class="bk"><tr><td class="na">本次行程<b>未安排租车</b>：城市内靠步行 + 公交 / 轻轨 / 渡轮，城际靠航班，一日游含接送，大洋路精品小团含全程用车。丹翠雨林若想自驾需国际驾照 + 英文翻译件。</td></tr></table></div>';
+}
+
+/* ---------- 逐日 ---------- */
+function renderDays(){
+  $('#dayBox').innerHTML = DAYS.map(d => {
+    const maps = d.items.filter(i => i.map).map(i => i.map);
+    const dayNav = maps.length ? navURL(maps) : null;
+    const rows = d.items.map(i => {
+      const cls = 'it' + (i.book ? ' book' : '') + (i.flight ? ' flight' : '');
+      let right = '<div class="bt">' + esc(i.title) +
+        (i.book ? '<span class="badge bk">需提前订</span>' : '') + '</div>';
+      if(i.desc) right += '<div class="bdsc">' + i.desc + '</div>';
+      if(i.map) right += '<div><a class="maplink" target="_blank" rel="noopener" href="' + navURL([i.map]) + '">📍 打开导航</a></div>';
+      return '<div class="' + cls + '"><div class="tm">' + esc(i.t) + '</div><div class="bd">' + right + '</div></div>';
+    }).join('');
+    return '<div class="day" data-day="' + d.n + '" style="--dc:' + d.color + '">' +
+      '<div class="dhead" role="button" tabindex="0">' +
+        '<div class="dnum"><div class="dd">' + esc(d.date) + '</div><div class="dw">' + esc(d.dow) + '</div></div>' +
+        '<div class="dinfo"><div class="dt">D' + d.n + ' · ' + esc(d.title) + '</div>' +
+          '<div class="ds">' + esc(d.dow) + ' · 第 ' + d.n + ' 天 / 共 12 天</div>' +
+          '<div class="dstay">🏨 ' + esc(d.stay) + '</div></div>' +
+        '<div class="dopen"></div>' +
+      '</div>' +
+      '<div class="dbody">' +
+        (maps.length ? '<div class="daymap">' + daySVG(d) + '</div>' : '') +
+        (dayNav ? '<div class="daynav"><a target="_blank" rel="noopener" href="' + dayNav + '">🧭 一键打开全天多点导航</a></div>' : '') +
+        (d.risk ? '<div class="risk">⚠ ' + d.risk + '</div>' : '') +
+        '<div class="tl">' + rows + '</div>' +
+      '</div></div>';
+  }).join('');
+  document.querySelectorAll('.dhead').forEach(el => {
+    const tog = () => el.parentElement.classList.toggle('open');
+    el.addEventListener('click', tog);
+    el.addEventListener('keydown', e => { if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); tog(); } });
+  });
+}
+
+/* ---------- 待办 & 贴士 ---------- */
+function renderRest(){
+  $('#todoBox').innerHTML = TODO.map(t =>
+    '<li' + (t.hot ? ' class="hot"' : '') + '><span class="dot">▸</span><span>' + t.t + '</span></li>').join('');
+  $('#tipBox').innerHTML = TIPS.map(t =>
+    '<div class="tip"><h3>' + esc(t.h) + '</h3>' + t.p.map(x => '<p>' + x + '</p>').join('') + '</div>').join('');
+  $('#foot').innerHTML = '本页面公开可见 —— 任何确认号 / 证件号 / 房间号均已排除。<br>' +
+    '距离出发：' + FLIGHTS[0].depISO.slice(0,16).replace('T',' ') + '（UTC+8）<br>' +
+    '<span style="opacity:.7">最后更新 2026-09-08 · 内容以已出票航班时间为锚 · 单文件离线可用</span>';
+}
+
+/* ---------- 配色切换 ---------- */
+function initTheme(){
+  const btn = $('#themeBtn');
+  const KEY = 'auhandbook-theme';
+  let saved = 'auto';
+  try{ saved = localStorage.getItem(KEY) || 'auto'; }catch(e){}
+  const apply = v => {
+    document.documentElement.setAttribute('data-theme', v);
+    btn.textContent = v === 'auto' ? '◐ 配色' : (v === 'light' ? '☀ 亮色' : '☾ 暗色');
+  };
+  apply(saved);
+  btn.addEventListener('click', () => {
+    const seq = ['auto','light','dark'];
+    const cur = document.documentElement.getAttribute('data-theme') || 'auto';
+    const nx = seq[(seq.indexOf(cur) + 1) % 3];
+    apply(nx);
+    try{ localStorage.setItem(KEY, nx); }catch(e){}
+  });
+}
+
+/* ---------- 启动 ---------- */
+renderOverview();
+renderBookings();
+renderDays();
+renderRest();
+initTheme();
+updNow();
+setInterval(updNow, 1000);
+</script>
+</body>
+</html>

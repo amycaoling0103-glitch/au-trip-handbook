@@ -1,0 +1,6 @@
+name = "au-trip-handbook"
+compatibility_date = "2026-09-08"
+
+# 纯静态：整目录作为 Workers 静态资源托管，无需 Worker 脚本、无需构建。
+[assets]
+directory = "."

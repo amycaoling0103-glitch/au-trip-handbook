@@ -1,0 +1,9 @@
+# 首次推送
+git add .
+git commit -m "init: 澳洲越南自由行手册"
+git push -u origin main
+
+# 之后每次改内容（改完让我更新 index.html 后执行）
+git add .
+git commit -m "update"
+git push
