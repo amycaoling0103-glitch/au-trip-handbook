@@ -380,18 +380,18 @@ const DAYS = [
   ]
 },
 {
-  n:3, date:'9/27', dow:'周日', color:'#e8734a', title:'墨尔本 → 悉尼｜CBD 核心 + The Rocks 周日市集', stay:'Sheraton Grand Sydney Hyde Park',
-  risk:'前一天 22:15 才落地，今早 08:15 又飞 —— 睡眠债最大。<b>注意：</b>捷星 JQ504 从 <b>MEL T4</b> 出发，与昨天国际到达的 T2 不是同一航站楼，需坐机场摆渡。',
+  n:3, date:'9/27', dow:'周日', color:'#e8734a', title:'墨尔本 → 悉尼｜海德公园 + QVB + The Rocks 周日市集', stay:'Sheraton Grand Sydney Hyde Park',
+  risk:'前一天 22:15 才落地，今早 08:15 又飞 —— 睡眠债最大。<b>注意：</b>捷星 JQ504 从 <b>MEL T4</b> 出发，与昨天国际到达的 T2 不是同一航站楼，需坐机场摆渡。<b>今日动线已优化：</b>酒店 → 海德公园 → QVB（顺路，步行 8 分钟）→ 一路往北到岩石区，全程单向不折返。',
   items:[
     {t:'05:45', title:'出发前往 MEL T4', desc:'Mantra 机场酒店 → T4 约 10 分钟；酒店班车或打车均可', map:'Melbourne Airport T4'},
     {t:'06:15', title:'到达 T4 办值机', desc:'起飞前 2 小时；捷星值机约起飞前 60 分钟关闭'},
     {t:'08:15', title:'JQ504 起飞（UTC+10）', flight:true},
     {t:'09:45', title:'抵达悉尼 SYD T2', flight:true, map:'Sydney Kingsford Smith Airport T2'},
     {t:'11:00', title:'酒店寄存行李', map:'Sheraton Grand Sydney Hyde Park'},
-    {t:'11:30', title:'CBD 核心漫步', desc:'海德公园 → 圣玛丽大教堂 → 皇家植物园 + 麦考利夫人座椅 → 歌剧院 → 环形码头（全程步行约 2h）', map:'Hyde Park Sydney'},
-    {t:'13:30', title:'岩石区午餐', map:'The Rocks Sydney'},
-    {t:'14:30', title:'QVB / Strand Arcade 溜缝购物', desc:'非强需，有空就逛', map:'Queen Victoria Building Sydney'},
-    {t:'15:30', title:'The Rocks 周日市集', desc:'10–17 点，<b>仅周日开放</b>，错过就要等下个周日', map:'The Rocks Market Sydney'},
+    {t:'11:30', title:'海德公园', desc:'酒店出门过条街就是（Elizabeth St 东侧），先缓一缓、逛约 40 分钟', map:'Hyde Park Sydney'},
+    {t:'12:10', title:'QVB 维多利亚女王大厦', desc:'海德公园往西步行约 8 分钟；<b>午餐可在这解决</b>（楼内餐饮多），顺带逛 Strand Arcade', map:'Queen Victoria Building Sydney'},
+    {t:'13:30', title:'CBD 北段漫步', desc:'圣玛丽大教堂 → 皇家植物园 + 麦考利夫人座椅 → 歌剧院 → 环形码头（步行约 1.5h）', map:'Royal Botanic Garden Sydney'},
+    {t:'15:15', title:'The Rocks 周日市集', desc:'10–17 点，<b>仅周日开放</b>，错过就要等下个周日', map:'The Rocks Market Sydney'},
     {t:'18:00', title:'岩石区晚餐 + 歌剧院海港夜景', desc:'第一天别硬撑，22:30 前睡', map:'Sydney Opera House'}
   ]
 },
@@ -663,7 +663,7 @@ const PACK = [
 const DAILYOUTFIT = [
   {d:'9/25 五', title:'上海 → 河内',                        text:'短袖 + 薄长裤 + 薄外套',  note:'外套随身别托运（机舱冷气足）；河内落地湿热，下机脱'},
   {d:'9/26 六', title:'河内 → 墨尔本（10h 夜航）',          text:'飞机装：长裤 + 短袖 + 薄针织；厚外套放随身', note:'22:15 落地墨尔本夜间 8–10°C，出机场前必须穿上外套'},
-  {d:'9/27 日', title:'墨尔本 → 悉尼（CBD 漫步 + 市集 + 夜景）', text:'长袖 + 薄针织 + 防风外套，运动鞋', note:'环码头夜景风大，体感比气温低 3–5°C'},
+  {d:'9/27 日', title:'墨尔本 → 悉尼（海德公园 + QVB + 市集 + 夜景）', text:'长袖 + 薄针织 + 防风外套，运动鞋', note:'环码头夜景风大，体感比气温低 3–5°C'},
   {d:'9/28 一', title:'悉尼｜邦迪海滩 + 塔龙加动物园',    text:'T + 薄外套 + 舒适运动鞋（能踩沙的）', note:'上午 Bondi–Tamarama 海岸步道 2–3km，海风大帽子要压住 · 别穿新鞋 · 下午 F2 渡轮 + 塔龙加也是大风口，薄外套随身'},
   {d:'9/29 二', title:'悉尼大学 + 鱼市场 → 晚飞凯恩斯',   text:'轻便分层、拍校园照穿整洁些；落地换短袖短裤', note:'行李寄存前台，随身只背 7kg 手提（捷星 JQ504 查得严）· 鱼市场室内有冷气 · 凯恩斯 21:30 落地 26°C+，夏装放手边'},
   {d:'9/30 三', title:'丹翠雨林 + 苦难角一日游',           text:'速干短袖 + 薄长裤，徒步鞋',  note:'林内闷热多蚊虫，长裤防蚊；防蚊液提前涂'},
@@ -852,6 +852,7 @@ const POI_GEO = {
   'Melbourne Airport T3':[-37.67,144.84], 'Melbourne Airport T2':[-37.67,144.84],
   'Sydney Kingsford Smith Airport T2':[-33.946,151.177], 'Sydney Airport T3':[-33.939,151.181],
   'Sheraton Grand Sydney Hyde Park':[-33.874,151.209], 'Hyde Park Sydney':[-33.873,151.211],
+  'St Marys Cathedral Sydney':[-33.871,151.213], 'Royal Botanic Garden Sydney':[-33.864,151.217],
   'The Rocks Sydney':[-33.859,151.208], 'The Rocks Market Sydney':[-33.858,151.207],
   'Queen Victoria Building Sydney':[-33.872,151.207], 'Sydney Opera House':[-33.857,151.215],
   'Bondi Beach':[-33.890,151.274], 'Circular Quay Sydney':[-33.861,151.211],
