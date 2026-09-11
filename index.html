@@ -52,7 +52,8 @@ body{
 a{color:inherit}
 /* ---------- header ---------- */
 .hero{text-align:center;padding:6px 0 18px;position:relative}
-.hero h1{font-size:21px;letter-spacing:.5px}
+.hero h1{font-size:21px;letter-spacing:.5px;line-height:1.3}
+.hero h1 .t{display:inline-block}
 .hero .dates{color:var(--sub);font-size:13px;margin-top:3px}
 .hero .route{font-size:12px;color:var(--sub);margin-top:6px;line-height:1.5}
 .hero h1 .girl{display:inline-block;font-size:1.45em;margin:0 2px;line-height:1;transform-origin:50% 80%;animation:wag 2.4s ease-in-out infinite}
@@ -180,8 +181,84 @@ ul.todo li.hot .dot{color:var(--danger)}
 .pits h3{margin-bottom:5px;font-size:13px}
 .pits div{margin:3px 0}
 .outfit-sub{margin:10px 0 4px;font-size:13.5px;font-weight:700;color:var(--ink)}
-@media (min-width:600px){ .tips{grid-template-columns:1fr 1fr} .outfits{grid-template-columns:1fr 1fr} .wx-grid{grid-template-columns:1fr 1fr} .ly-grid{grid-template-columns:repeat(3,1fr)} .dailyfit{grid-template-columns:1fr 1fr} }
-@media (max-width:400px){ .it .tm{flex:0 0 50px;font-size:11.5px} .cd .n{font-size:21px} }
+@media (min-width:600px){ .tips{grid-template-columns:1fr 1fr} .outfits{grid-template-columns:1fr 1fr} .wx-grid{grid-template-columns:1fr 1fr} .ly-grid{grid-template-columns:repeat(3,1fr)} .dailyfit{grid-template-columns:1fr 1fr} .mbr{display:none} }
+/* ============ 手机端适配 ============ */
+@media (max-width:600px){
+  body{padding:10px 10px 56px;line-height:1.58}
+  .wrap{width:100%;max-width:100%;overflow-wrap:break-word}
+  .bk,.bkgroup,.card,.tip,.outfit,.wx,.ly,.pack-grp,.dayfit,.it .bd{min-width:0;max-width:100%}
+  /* 标题：不折行、随屏缩放 */
+  .hero{padding:2px 0 14px;width:100%;max-width:100%;overflow:hidden}
+  .hero h1{font-size:clamp(15px,5vw,21px);letter-spacing:0;line-height:1.35;
+    word-break:break-word;overflow-wrap:anywhere;max-width:100%}
+  .hero h1 .girl{font-size:1.2em;margin:0 1px}
+  .hero h1 .t{display:inline}
+  .hero .dates{font-size:11.5px;margin-top:5px;white-space:normal;overflow-wrap:anywhere;
+    max-width:100%;padding:0 4px;line-height:1.5}
+  .hero .route{font-size:11px;margin-top:5px;white-space:normal;overflow-wrap:anywhere;
+    max-width:100%;padding:0 4px;line-height:1.55}
+  .themeBtn{font-size:10.5px;padding:4px 8px;top:-2px}
+  /* 倒计时卡片 */
+  .now{padding:13px 12px;border-radius:14px;margin-bottom:14px}
+  .now .evt{font-size:15px}
+  .cd{gap:5px}
+  .cd .u{min-width:0;padding:7px 2px;border-radius:9px}
+  .cd .n{font-size:clamp(18px,6.4vw,24px)}
+  .cd .t{font-size:9.5px;letter-spacing:.5px}
+  /* 总览地图：容器内横滑，不撑破页面（grid 强制约束子项宽度） */
+  #overview > .card{display:grid;grid-template-columns:minmax(0,1fr);width:100%;max-width:100%}
+  .mapcard{padding:8px 6px 4px;overflow-x:auto;-webkit-overflow-scrolling:touch;min-width:0;
+    overscroll-behavior-x:contain}
+  .mapcard svg{min-width:540px;max-width:none}
+  .legend{min-width:0}
+  /* 横滑提示条 */
+  .mapcard::after{content:"← 左右滑动查看完整地图 →";display:block;position:sticky;left:0;
+    width:100%;text-align:center;font-size:10.5px;color:var(--sub);
+    padding:5px 0 2px;letter-spacing:.5px}
+  .legend{font-size:11px;gap:5px 10px;padding:6px 8px 10px}
+  /* 表格 → 纵向卡片式 */
+  table.bk{display:block;border:none;background:transparent;font-size:13px}
+  table.bk tbody,table.bk tr{display:block}
+  table.bk tr{background:var(--paper);border:1px solid var(--line);border-radius:11px;
+    margin-bottom:8px;overflow:hidden;box-shadow:var(--shadow)}
+  table.bk thead{display:none}
+  table.bk th{display:none}
+  /* 干掉只含表头的空行卡片 */
+  table.bk tr.hdrow{display:none}
+  table.bk tr{background:var(--paper);border:1px solid var(--line);border-radius:11px;
+    margin-bottom:8px;overflow:hidden;box-shadow:var(--shadow)}
+  table.bk td{display:block;border-bottom:none;padding:8px 11px 2px;
+    overflow-wrap:anywhere;word-break:break-word}
+  table.bk td.k{white-space:normal;font-weight:700;font-size:12px;color:var(--accent);
+    background:rgba(125,125,125,.05);padding:6px 11px;border-bottom:1px solid var(--line)}
+  table.bk td:last-child{padding-bottom:9px}
+  table.bk tr:last-child td{border-bottom:none}
+  /* 航旅纵横按钮：手机上改为块级，不遮挡 */
+  .umetrip{float:none;display:inline-block;margin:6px 0 0;font-size:11px;padding:4px 10px}
+  .bktitle{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
+  /* 标签允许换行，避免长文本溢出 */
+  .tag,.badge{white-space:normal;overflow-wrap:anywhere}
+  /* 逐日卡片 */
+  .day{border-radius:11px}
+  .dhead{padding:11px 11px;gap:8px}
+  .dnum{width:36px;height:36px;border-radius:9px}
+  .dinfo .dt{font-size:14px}
+  .dinfo .ds,.dinfo .dstay{font-size:11.5px}
+  .it{padding:7px 11px;gap:8px}
+  .it .tm{flex:0 0 46px;font-size:11.5px}
+  .it .bd{font-size:13px}
+  .daymap{padding:6px 8px 2px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .daymap svg{min-width:520px}
+  .risk{margin:7px 10px 2px;font-size:12px}
+  h2{font-size:14.5px}
+}
+@media (max-width:400px){
+  .it .tm{flex:0 0 42px;font-size:11px}
+  .cd .n{font-size:19px}
+  .hero h1{font-size:16px}
+  .mapcard svg{min-width:520px}
+  .daymap svg{min-width:480px}
+}
 </style>
 </head>
 <body data-theme="auto">
@@ -189,7 +266,7 @@ ul.todo li.hot .dot{color:var(--danger)}
 
 <header class="hero">
   <button class="themeBtn" id="themeBtn" type="button">◐ 配色</button>
-  <h1><span class="girl">👧</span><span class="girl">👧</span> 2小只勇闯袋鼠国通关秘籍~</h1>
+  <h1><span class="girl">👧</span><span class="girl">👧</span><br class="mbr"><span class="t">2小只勇闯袋鼠国通关秘籍~</span></h1>
   <div class="dates">2026.09.25（周五） – 10.06（周二） · 2 人 · 共 12 天 11 晚</div>
   <div class="route">上海 → 河内 → 墨尔本 → 悉尼 → 凯恩斯 → 墨尔本 → 广州 → 上海</div>
 </header>
@@ -867,11 +944,11 @@ function renderBookings(){
   $('#bkBox').innerHTML =
     '<div class="bkgroup"><div class="bktitle">✈ 机票（7 段，已出票 — 全行程时间锚点）' +
       '<a class="umetrip" target="_blank" rel="noopener" href="https://m.umetrip.com/">✈ 航旅纵横</a></div>' +
-      '<table class="bk"><tr><th style="width:78px">航班</th><th>航段与时间</th></tr>' + flightRows + '</table></div>' +
+      '<table class="bk"><tr class="hdrow"><th style="width:78px">航班</th><th>航段与时间</th></tr>' + flightRows + '</table></div>' +
     '<div class="bkgroup"><div class="bktitle">🏨 住宿（每晚住哪）</div>' +
-      '<table class="bk"><tr><th style="width:88px">城市 / 晚数</th><th>酒店与地址</th></tr>' + hotelRows + '</table></div>' +
+      '<table class="bk"><tr class="hdrow"><th style="width:88px">城市 / 晚数</th><th>酒店与地址</th></tr>' + hotelRows + '</table></div>' +
     '<div class="bkgroup"><div class="bktitle">🎟 门票与一日游</div>' +
-      '<table class="bk"><tr><th style="width:70px">日期</th><th>项目与集合信息</th></tr>' + tourRows + '</table></div>' +
+      '<table class="bk"><tr class="hdrow"><th style="width:70px">日期</th><th>项目与集合信息</th></tr>' + tourRows + '</table></div>' +
     '<div class="bkgroup"><div class="bktitle">🚗 租车</div>' +
       '<table class="bk"><tr><td class="na">本次行程<b>未安排租车</b>：城市内靠步行 + 公交 / 轻轨 / 渡轮，城际靠航班，一日游含接送，大洋路一日游（50 人团）含全程用车。丹翠雨林若想自驾需国际驾照 + 英文翻译件。</td></tr></table></div>';
 }
