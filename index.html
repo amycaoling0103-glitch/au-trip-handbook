@@ -401,16 +401,16 @@ const DAYS = [
 },
 {
   n:4, date:'9/28', dow:'周一', color:'#2b6777', title:'悉尼｜邦迪海滩 + 塔龙加动物园', stay:'Sheraton Grand Sydney Hyde Park',
-  risk:'正值<b>新州春假（9/28–10/9）</b>，塔龙加动物园人流大，门票建议提前在线买。动物园 <b>16:00 停止入园、17:00 闭园</b>，14:00 的渡轮到园约只剩 3 小时。',
+  risk:'正值<b>新州春假（9/28–10/9）</b>，塔龙加动物园人流大，门票建议提前在线买。动物园 <b>16:00 停止入园、17:00 闭园</b>，14:00 的渡轮到园约只剩 3 小时。<br>⚠️ <b>渡轮工业行动（9/11–10/6）</b>：悉尼渡轮员工工会（MUA）与私营运营商 Transdev 谈崩，工会关掉 Opal 读卡器、敞开闸门 —— 这期间坐渡轮大概率<b>不扣费</b>，但官方 TfNSW 不认账，仍要求照常 tap on / tap off（读卡器若没关就必须刷卡）。<b>别盯着省钱，真正的坑是班次：可能延误、减班甚至取消</b>。出发前用 Opal Travel app 或 transportnsw.info 查实时班次；<b>F2 一旦不稳，直接改坐 247 路巴士</b>（Wynyard → 动物园门口，约 30 分钟，票价 AUD 3–5，比渡轮还便宜一半），只是少了海港视角。',
   items:[
     {t:'09:00', title:'出发前往邦迪', map:'Bondi Beach'},
     {t:'09:30', title:'333 路 → 邦迪海滩', desc:'约 30 分钟车程', map:'Bondi Beach'},
     {t:'10:00', title:'邦迪 + 海岸步道', desc:'Bondi–Tamarama 段走 2–3km 即可，不必走满 6km'},
     {t:'12:30', title:'邦迪咖啡午餐'},
     {t:'13:30', title:'返回环形码头', desc:'公交 / 轻轨约 50 分钟', map:'Circular Quay Sydney'},
-    {t:'14:00', title:'F2 渡轮 → 塔龙加动物园', flight:false, desc:'渡轮约 12 分钟，顺路看港景', map:'Taronga Zoo Sydney'},
+    {t:'14:00', title:'F2 渡轮 → 塔龙加动物园', flight:false, desc:'渡轮约 12 分钟，顺路看港景。罢工期间大概率免费，但班次不稳 —— <b>备选：247 路巴士 Wynyard → 动物园门口</b>', map:'Taronga Zoo Sydney'},
     {t:'14:30', title:'塔龙加动物园', desc:'缆车 + 考拉 / 袋鼠，3 小时重点游览', book:true, map:'Taronga Zoo Sydney'},
-    {t:'17:00', title:'渡轮返回', desc:'注意末班渡轮时间'},
+    {t:'17:00', title:'渡轮返回（或 247 路巴士回 Wynyard）', desc:'留意末班；同一条 F2，去程不稳回程大概率也不稳'},
     {t:'18:30', title:'CBD 晚餐 + 海港夜景', map:'Sydney Opera House'}
   ]
 },
@@ -569,6 +569,7 @@ const TIPS = [
   ]},
   {h:'悉尼 Opal + 墨尔本电车', p:[
     '<b>悉尼 Opal</b>：周日单日封顶最低（约 AUD 2.80），整天坐公交 / 渡轮不心疼。9/27 周日 CBD 往返 + 周日市集 + 岩石区全靠它。',
+    '<b>渡轮"免费"到底怎么回事</b>：不是政府福利，是 MUA 工会罢工的一部分（9/11 0:01 – 10/6），工会把 Opal 读卡器关掉让乘客免费乘车，以此向运营商 Transdev 施压（诉求：立即加薪 5% + 每年涨幅不低于通胀）。覆盖悉尼渡轮<b>全部公共航线</b>（F1 Manly、F2 塔龙加、F3/F4 帕拉马塔河等）；<b>私营的 Manly Fast Ferry 不参与</b>。官方 TfNSW 表态「正常票价适用，必须 tap on / tap off」，所以读卡器若还在工作就得照常刷卡 —— 带好 Opal / 信用卡，别指望一定免费。',
     '<b>墨尔本 myki</b>：CBD 电车区（35 路、Circle Tram）永久免费，无需刷卡；出 CBD 才要刷。myki 卡机场 7-11 / 便利店都有。',
     'Jetstar 廉航对手提严：JQ504 限制 7kg 且无电脑包豁免，电子产品充电宝全放随身。',
   ]},
