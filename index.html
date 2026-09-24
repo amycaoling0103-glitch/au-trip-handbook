@@ -347,7 +347,7 @@ const FLIGHTS = [
 /* ---- 住宿（每晚住哪）---- */
 const HOTELS = [
   {city:'河内', nights:'9/25（1 晚）', name:'Blue Sky Noi Bai Hotel and Pool', addr:'17 Ngo Dinh 2, Thon Dien Xa, Xa Noi Bai, Ha Noi, Vietnam 10000', tel:'+84 987 669 992', status:'已订（Agoda）', note:'Deluxe Double - AC · 含泳池 + 单程机场接送 + WiFi'},
-  {city:'墨尔本', nights:'9/26（1 晚）', name:'Mantra Melbourne Airport 曼特拉墨尔本机场酒店', addr:'2 Trade Park Drive, Tullamarine VIC 3043', tel:'+61 3 9093 6500', status:'已订', note:'尊贵一室公寓（双床）· 无餐食 · ⚠ 非 24 小时前台（入住登记截止「次日 00:00」），22:15 落地须赶午夜前到店 · 免费班车 T2 外上车 · 离店 10:00 前'},
+  {city:'墨尔本', nights:'9/26（1 晚）', name:'Mantra Melbourne Airport 曼特拉墨尔本机场酒店', addr:'2 Trade Park Drive, Tullamarine VIC 3043', tel:'+61 3 9093 6500', status:'已订', note:'尊贵一室公寓（双床）· 无餐食 · 前台 24 小时值班（已邮件确认）· 免费班车 24/7 按需运行（T2 外「Hotel & Off-Airport Buses」牌下等，拨 +61 3 9093 6500 按 1 叫车）· 离店 10:00 前'},
   {city:'悉尼', nights:'9/27–9/29（2 晚）', name:'Sheraton Grand Sydney Hyde Park 悉尼海德公园喜来登', addr:'161 Elizabeth Street, Sydney NSW 2000', tel:'+61-2-92866000', status:'已订（万豪）', note:'CBD 核心，步行可达海德公园 / 环形码头'},
   {city:'凯恩斯', nights:'9/29–10/2（3 晚）', name:'Crystalbrook Bailey 克里斯托布鲁克·贝利', addr:'Ground Floor, A/163 Abbott St, Cairns QLD 4870', tel:'+61 7 4253 4000', status:'已订（Fliggy）', note:'Urban Twin 城市双床房 · 不含早餐'},
   {city:'墨尔本', nights:'10/2–10/5（3 晚）', name:'Element Melbourne Richmond 墨尔本里士满源宿', addr:'588 Swan Street, Richmond VIC 3121', tel:'+61-3-91128888', status:'已订（万豪 · 积分兑换）', note:'大床房 · 含 WiFi · 酒店内停车约 AUD 35/天'}
@@ -375,19 +375,19 @@ const DAYS = [
 },
 {
   n:2, date:'9/26', dow:'周六', color:'#2a9d8f', title:'河内 → 墨尔本（长途飞行日）', stay:'Mantra Melbourne Airport',
-  risk:'这是全程最耗的一段：9h30m 飞行。落地 22:15 后过海关 + 检疫，到酒店大概率已近午夜。<b>注意：</b>Mantra 机场酒店<b>非 24 小时前台</b>，入住登记截止「次日 00:00」——务必赶在午夜前到店办入住，晚了可能没人接待。',
+  risk:'这是全程最耗的一段：9h30m 飞行。落地 22:15 后过海关 + 检疫，到酒店大概率已近午夜。<b>已邮件确认：</b>Mantra 机场酒店<b>前台 24 小时值班</b>、<b>免费班车 24/7 按需运行</b>（无需预约），晚到无忧。落地后出 T2 到达厅，到标「Hotel & Off-Airport Buses」处等，拨 +61 3 9093 6500 按 1 叫车；打不了澳电话可找机场 help desk 代联系。',
   items:[
     {t:'06:30', title:'出发前往机场', desc:'建议 06:45–07:00 到 T2', map:'Noi Bai International Airport Terminal 2'},
     {t:'09:45', title:'VN779 起飞（UTC+7）', flight:true},
     {t:'22:15', title:'抵达墨尔本 MEL T2（UTC+10）', flight:true, desc:'澳洲入境检疫极严，请如实申报食品 / 药品 / 木制品 / 泥鞋'},
-    {t:'23:30', title:'入住酒店', desc:'Mantra 机场酒店，班车 T2 外上车；⚠ 前台非 24 小时，登记截止「次日 00:00」，务必午夜前到店；直接睡', map:'Mantra Melbourne Airport'}
+    {t:'23:30', title:'入住酒店', desc:'Mantra 机场酒店 24h 前台 · 免费班车 24/7 按需（T2 外「Hotel & Off-Airport Buses」牌下等，拨 +61 3 9093 6500 按 1 叫车）', map:'Mantra Melbourne Airport'}
   ]
 },
 {
   n:3, date:'9/27', dow:'周日', color:'#e8734a', title:'墨尔本 → 悉尼｜海德公园 + QVB + The Rocks 周日市集', stay:'Sheraton Grand Sydney Hyde Park',
   risk:'前一天 22:15 才落地，今早 08:15 又飞 —— 睡眠债最大。<b>注意：</b>捷星 JQ504 从 <b>MEL T4</b> 出发，与昨天国际到达的 T2 不是同一航站楼，需坐机场摆渡。<b>今日动线已优化：</b>酒店 → 海德公园 → QVB（顺路，步行 8 分钟）→ 一路往北到岩石区，全程单向不折返。',
   items:[
-    {t:'05:45', title:'出发前往 MEL T4', desc:'Mantra 机场酒店 → T4 约 10 分钟；酒店班车或打车均可', map:'Melbourne Airport T4'},
+    {t:'05:45', title:'出发前往 MEL T4', desc:'Mantra 机场酒店 → T4：先到前台领免费巴士票交给司机（24/7 按需，每 5–10 分钟一班，可能与其他客人共用绕路）；或打车约 10 分钟', map:'Melbourne Airport T4'},
     {t:'06:15', title:'到达 T4 办值机', desc:'起飞前 2 小时；捷星值机约起飞前 60 分钟关闭'},
     {t:'08:15', title:'JQ504 起飞（UTC+10）', flight:true},
     {t:'09:45', title:'抵达悉尼 SYD T2', flight:true, map:'Sydney Kingsford Smith Airport T2'},
@@ -530,7 +530,7 @@ const TODO = [
   {t:'✅ 旅游保险已买：<b>苏黎世「万国游踪 · 无忧」50 万保额</b>（含医疗 + 紧急救援送返）—— <b>承保水肺潜水</b>（最大深度 30 米以内 + 教练陪同 + 不独自潜），10/1 大堡礁深潜不用再担心免责。<b>待办：把 24h 救援热线 + 保单号存进手机备忘录</b>', hot:true},
   {t:'越南 e-visa ✅ 已办 —— 打印件随身（浦东值机 + 河内入境都要看）', hot:true},
   {t:'✅ 全部 7 段航班已购托运额度 —— 仅 <b>JQ504 墨尔本→悉尼 一段 20kg</b>，其余 6 段全 23kg（VN533/VN779/QF1878/VA1298/CZ344/CZ3533）。装箱按 <b>20kg / 人</b> 卡死（最严的那段是瓶颈），JQ504 在线值机时核对额度挂在订单上', hot:true},
-  {t:'致电 Mantra Melbourne Airport（+61 3 9093 6500）告知 9/26 约 23:30 才到店：确认前台有人 + 班车怎么坐（前台非 24 小时，登记截止次日 00:00）', hot:true},
+  {t:'落地墨尔本 T2 → 出到达厅到「Hotel & Off-Airport Buses」牌下，拨 +61 3 9093 6500 按 1 叫 Mantra 免费班车（已邮件确认 24h 前台 + 班车 24/7 按需；打不了澳电话找 help desk 代联系）', hot:true},
   {t:'在线值机 JQ504（9/27）/ QF1878（9/29）/ VA1298（10/2）三段澳洲国内航班', hot:true},
   {t:'✅ 澳元现金已换 <b>≈610 AUD</b>（50 / 20 / 10 面额）—— 司机小费零钱（大洋路 5 AUD/人）单独留出来，别混进整钱', hot:true},
   {t:'落地河内 <b>T2 航站楼</b>换越南盾：<b>至少 70 万盾（≈185 元）</b>，9/25 一晚用（河粉 / 洗头 / 打车）；优先拿 <b>10 万 / 20 万</b>纸币，别全是 50 万大额（小店找不开）；自己已带 2 万盾', hot:true},
